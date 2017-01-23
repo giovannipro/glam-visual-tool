@@ -7,65 +7,131 @@ $(document).ready(function(){
 // main variables
 // ----------------------------------------
 
-var w = window;
-var width = 900, ///w.outerWidth,
-height = Math.round(width - (width / 3));
-
-var margin = {top: 50, right: 50, bottom: 50, left: 50},
-nomargin_w = width - (margin.left + margin.right),
-nomargin_h = height - (margin.top + margin.bottom);
+//var w = window;
+var width = Math.round( $("#page_views_container").outerWidth() ),  // 900 
+	height = Math.round( $("#page_views_container").outerHeight() / 3 - 10);  //Math.round(width - (width / 3));
+var margin = {top: 60, right: 60, bottom: 60, left: 60},
+	nomargin_w = width - (margin.left + margin.right),
+	nomargin_h = height - (margin.top + margin.bottom);
+	//console.log(width + " " + height)
 
 function dataviz(){
 	container = "#page_views_container"
 	data_source = "data/pageviews.json"
 
-	var svg = d3.select(container)
-		.append("svg")
-		.attr("viewBox", "0 0 " + width + " " + height )
-
-	var plot = svg.append("g")
-		.attr("id", "d3_plot")
-		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-	// parse data
-	var parseTime = d3.timeParse("%Y/%m/%d")
-
 	d3.json(data_source, function(error, data) {
 		if (error) throw error;
-		console.log(data)
+		//console.log(data)
+		files = data.data //[0].pages[0].pageviews;
+		console.log(files)
 
-		/*d_1 = d.pageviews[0].pageview
-		console.log(d_1)
+		var height =  300, //($(container).height() / files.length);
+			nomargin_h = height - (margin.top + margin.bottom);
 
-		d_1.forEach(function(d) {
-			d.date = parseTime(d.date)
-			d.count = +d.count;
-		});
+		var parseTime = d3.timeParse("%Y/%m/%d")
 
-		var max_pv = d3.max(d_1, function(d) {
-			return +d.count;
-		});
-		//console.log(max_pv)
+		files.forEach(function(file) {
+			//console.log(file)
+			var pages = file.pages
 
-		// range (output)
+			pages.forEach(function(page) {
+				console.log(page.pageviews)
+				var pageviews = page.pageviews
+
+				pageviews.forEach(function(pv) {
+					console.log(pv)
+					pv.date = parseTime(pv.date);
+					pv.count = +pv.count;
+				})
+			})
+		})
+
+		var svg = d3.select(container).selectAll("svg") 
+			.data(files)
+			.enter()
+			.append("svg")		
+			.attr("width",width)
+			.attr("height",height)
+			.attr("viewBox", "0 0 " + width + " " + height)
+
+		var plot = svg.append("g")
+			.attr("id", "d3_plot")
+			.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+
+		var file = plot.append("text")
+			.text(function (d,i){
+				return d.file
+			})
+			.attr("x",10)
+			.attr("y",-10)	
+
+		// range
 		var x = d3.scaleTime()
-			.rangeRound([0, nomargin_w]);
+			.rangeRound([0, nomargin_w])
 
 		var y = d3.scaleLinear()
 			.rangeRound([nomargin_h, 0]);
 
-		//domain (original data)
-		var max = d3.max(d_1, function(d) {
-			return +d.count;
-		});
+		// domain
+		x.domain([
+			d3.min(files, function(file) { 
+				return file.pages[0].pageviews[0].date //.pages[0].pageviews[0].date //file.files[0].date; 
+			}),
+			d3.max(files, function(file) { 
+				return file.pages[0].pageviews[files[0].pages[0].pageviews.length -1].date //file //file.files[file.files.length - 1].date; 
+			})
+		]);
 
-		x.domain(d3.extent(d_1, function(d) {
-			return d.date; 
-		}));
+		var x_min =	d3.min(files, function(file) { 
+			return file.pages[0].pageviews[0].date //.pages[0].pageviews[0].date //file.files[0].date; 
+		})
+		var x_max =	d3.max(files, function(file) { 
+			return file.pages[0].pageviews[files[0].pages[0].pageviews.length -1].date //.pages[0].pageviews[0].date //file.files[0].date; 
+		})
 
-		y.domain([0,max]);
+		console.log(files[0].pages[0].pageviews[files[0].pages[0].pageviews.length -1].date)
+		console.log(x_min)
+		console.log(x_max)
 
+		var max_y = d3.max(files, function(d) {
+			return d3.max(d.pages, function(a) {
+				return d3.max(a.pageviews, function(b) {
+					return b.count
+				})
+			})
+		})
+		console.log(max_y)
 
+		y.domain([0,max_y]);
+
+		// axis
+		plot.append("g")
+			.attr("class", "axis axis-x")
+			.attr("transform", "translate(0," + (nomargin_h) + ")") // (margin.left * 4) )
+			.call(d3.axisBottom(x))
+			.selectAll("text")
+				.attr("y", 25)
+				.attr("x", 5)
+				.style("text-anchor", "start")
+
+		// y axis
+		plot.append("g")
+			.attr("class", "axis axis-y")
+			.call(d3.axisLeft(y))
+
+		d3.selectAll(".tick > text")
+			.style("font-family", "verdana");
+
+		// bars
+		var bars_group = plot.append("g")
+			.attr("class", function(d,i){
+				return d.user + " bars"
+			})
+			.attr("y",0)
+			.attr("x",0)
+			console.log(files)
+
+		/*
 		//line generator
 		var line = d3.line()
 			.curve(d3.curveStepBefore) // curveCatmullRom

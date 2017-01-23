@@ -58,7 +58,7 @@ function dataviz(){
 			return d3.descending(x.files.total, y.files.total); // descending ascending
 			//console.log(users[0].files.total)
 		})
-		//console.log(users);
+		console.log(users);
 
 		test = users;
 		var nested = d3.nest()
@@ -140,7 +140,6 @@ function dataviz(){
 			})
 			.attr("y",0)
 			.attr("x",0)
-
 		
 		bars_group.selectAll(".bar")
 			//.data(users)
@@ -172,12 +171,18 @@ function dataviz(){
 		d3.selectAll(".tick > text")
 			.style("font-family", "verdana");
 
+		var starting_area = d3.area()
+			.x(function(d) { return x(d.date)})
+			.y0(nomargin_h)
+			.y1(function(d) {return y(0);})
+			.curve(d3.curveStepBefore)
+
 		var area = d3.area()
 			.x(function(d) { return x(d.date); })
 			.y0(nomargin_h)
 			.y1(function(d) {return y(d.count); })
-			.curve(d3.curveStepBefore)
-
+			.curve(d3.curveStepBefore) // curveStepBefore curveStepAfter
+			
 		var line = d3.line()
 			.x(function(d) {
 				return x(d.date);
@@ -200,7 +205,11 @@ function dataviz(){
 				return d.files // .files;
 			})
 			.attr("fill","steelblue")
-			.attr("d", area);
+			.attr("d", starting_area)
+			.transition()
+			.duration(400)
+			.attr("d", area)
+			//console.log(22)
 	})
 }
 
