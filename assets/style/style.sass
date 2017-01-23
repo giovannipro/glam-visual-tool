@@ -1,0 +1,250 @@
+@import "../../bower_components/neat/app/assets/stylesheets/_neat.scss"
+
+// variables
+// ----------------------------------------
+$font_l: 2em
+$font_m: 1em
+$font_s: 0.8em
+$font_xs: 0.6em
+
+$x: 1em
+
+$mobile: new-breakpoint(max-width 500px)
+$tablet: new-breakpoint(max-width 768px)
+
+$main_color: #0D6FF6
+$cover_background: #e2e2e2
+$dataviz: gray
+$sub_header: #dcdcdc
+$black: black
+$white: white
+$line: gray
+$sidebar: #f1f1f1
+
+body
+	font-family: 'Open Sans', Arial, sans-serif
+	margin: 0
+	padding: 0
+	color: $black
+
+// helper
+// ----------------------------------------
+div .hide
+	display: none
+
+div .show
+	display: block
+
+.clear
+	clear: both
+
+
+// general layout
+// ----------------------------------------
+.container
+	+outer-container(70%)
+
+	div
+		@include span-columns(12)
+
+.top_bar
+	height: 5vh
+	padding: $x * 0.5
+
+#topbar
+	background-color: $main_color
+
+	a
+		color: white
+		margin-top: 0
+		text-decoration: none
+		font-size: $font_s
+
+#sub_header
+	background-color: $sub_header
+
+	a, a:visited 
+		text-decoration: none
+	span
+		display: block
+		float: left
+		margin-right: $x * 3
+		padding: $x 0 $x 0
+
+#footer_bar
+	background-color: gray
+	margin-top: $x * 4
+
+	a
+		color: $white
+		text-decoration: none
+
+// layout homepage
+// ----------------------------------------
+#cover
+	height: $x * 30
+	display: flex
+	align-items: center
+	background: -moz-linear-gradient(top,  #e2e2e2 0%, #dbdbdb 50%, #d1d1d1 51%, #e0e0e0 100%)
+	background: -webkit-linear-gradient(top,  #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#e0e0e0 100%)
+	background: linear-gradient(to bottom,  #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#e0e0e0 100%)
+
+	h2
+		@include outer-container
+		align-self: flex-start
+		text-align: center
+		font-size: $font_l
+		font-weight: normal
+
+#category
+	@include outer-container
+	margin-top: $x * 2
+
+// layout internal pages
+// ----------------------------------------
+#data_visualizations
+	@include outer-container
+	padding: 0
+	margin-top: $x * 3 
+	overflow: hidden
+
+	li
+		display: flex
+		@include span-columns(4)
+		@include omega(3n)
+		background-color: $dataviz
+		height: $x * 10
+		align-self: center
+		padding: $x
+		margin-bottom: 10px
+
+		@include media($tablet)
+			@include span-columns(6)
+			@include omega(2n)
+
+		@include media($mobile)
+			@include span-columns(12)
+			@include omega(1n)
+		
+		a
+			display: block
+			color: white
+			text-decoration: none
+
+#visualizations
+	+outer-container(100%)
+	//height: 100%
+
+	#dataviz
+		//padding: $x 0 0 $x
+		//@include span-columns(9)
+		//margin-right: 0
+		height: 85vh
+		width: 80%
+		float: left
+
+	#left_sidebar
+		//@include span-columns(3)
+		//border-left: 1px solid gray
+		background-color: $sidebar
+		overflow: scroll
+		padding-left: 0
+		height: 90vh
+		width: 20%
+		float: left
+
+#how_to_read
+	//border: 1px solid #c5c5c5
+	//border-radius: $x * 0.3
+	margin: 0
+	padding: ($x * 0.5) $x ($x * 0.5)
+	cursor: pointer
+	height: 5vh
+
+.how_to_read
+	//position: absolute
+	//@include span-columns(9)
+	display: none
+	position: absolute
+	width: 70%
+
+#sidebar 
+	display: block
+
+	ul
+		margin: 0
+		padding: 0
+		list-style: none
+
+	.list
+		//padding: $x
+		margin-bottom: $x * 3
+		display: block
+
+		li
+			padding: $x * 0.5
+			border-bottom: 1px solid $white
+
+		li:hover
+			cursor: pointer
+			
+		.item
+			width: 80%
+			float: left
+
+		.link
+			width: 20%
+			float: right
+
+
+// tipography
+// ----------------------------------------
+h1
+	font-size: $font_l
+	margin: 0
+
+h2
+	font-size: $font_m
+
+#category span
+	font-size: $font_l
+	font-weight: lighter
+	text-decoration: none
+
+// dataviz
+// ----------------------------------------
+
+#category_network_container
+	height: 85vh
+	overflow-y: hidden
+
+	.edges 
+		stroke: #999
+		stroke-opacity: 0.6
+		fill: red
+
+	.nodes g
+		cursor: pointer
+
+	.nodes > g //:hover
+		z-index: 2
+
+	.nodes g text
+		opacity: 0.4
+
+	.nodes g:hover text
+		opacity: 1
+		transform: scale(1.5,1.5)
+
+#user_contributions_container
+	overflow-x: scroll
+
+.svg_container
+	width: 100%
+
+.with_score
+	height: 90%
+
+#score
+	height: 10%
+	
