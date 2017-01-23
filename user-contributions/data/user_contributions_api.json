@@ -1,0 +1,44 @@
+{
+  "timestamp": "2017/01/16",
+  "users": [
+    {
+      "user": "ETH-Bibliothek",
+      "files": [
+        {
+          "date": "2016/05",
+          "count": 342
+        },
+        {
+          "date": "2016/06",
+          "count": 878
+        },
+        {
+          "date": "2016/08",
+          "count": 5689
+        },
+        {
+          "date": "2016/12",
+          "count": 9549
+        }
+      ]
+    },
+    {
+      "user": "Io Herodotus",
+      "files": [
+        {
+          "date": "2016/1",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "user": "SteinsplitterBot",
+      "files": [
+        {
+          "date": "2016/08",
+          "count": 1
+        }
+      ]
+    }
+  ]
+}
