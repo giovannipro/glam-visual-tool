@@ -35,16 +35,60 @@ function dataviz(){
 			var pages = file.pages
 
 			pages.forEach(function(page) {
-				console.log(page.pageviews)
+				//console.log(page.pageviews)
 				var pageviews = page.pageviews
 
 				pageviews.forEach(function(pv) {
-					console.log(pv)
+					//console.log(pv)
+
 					pv.date = parseTime(pv.date);
 					pv.count = +pv.count;
 				})
 			})
 		})
+
+		var my_dataset = []
+
+		$.each(files, function(i,v){
+			//console.log(v.file)
+			var pv = v.pages
+			var file = v.file
+
+			//my_file = [];
+			my_date = [];
+
+			$.each(pv, function(i,v){
+				//console.log(v)
+				var count = v.pageviews
+				
+				var total = 0
+				$.each(count, function(i,v){
+					
+					//console.log(v)
+
+					//console.log(v.date)
+					if (1 == 1) { // v.date == "Fri Jan 01 2016 00:00:00 GMT+0100 (CET)"
+						total += v.count
+						
+						/*
+						date = [{
+							total: total,
+							date: parseTime(v.date)
+						}]
+						my_date.push({date})
+						*/
+					}
+					else {
+						//console.log(v.date)
+					}
+
+				})
+				//my_dataset.push({file})
+				console.log(total)
+			})
+		})
+		console.log(my_dataset)
+		
 
 		var svg = d3.select(container).selectAll("svg") 
 			.data(files)
@@ -89,10 +133,6 @@ function dataviz(){
 			return file.pages[0].pageviews[files[0].pages[0].pageviews.length -1].date //.pages[0].pageviews[0].date //file.files[0].date; 
 		})
 
-		console.log(files[0].pages[0].pageviews[files[0].pages[0].pageviews.length -1].date)
-		console.log(x_min)
-		console.log(x_max)
-
 		var max_y = d3.max(files, function(d) {
 			return d3.max(d.pages, function(a) {
 				return d3.max(a.pageviews, function(b) {
@@ -100,7 +140,7 @@ function dataviz(){
 				})
 			})
 		})
-		console.log(max_y)
+		//console.log(max_y)
 
 		y.domain([0,max_y]);
 
@@ -129,7 +169,7 @@ function dataviz(){
 			})
 			.attr("y",0)
 			.attr("x",0)
-			console.log(files)
+			//console.log(files)
 
 		/*
 		//line generator
