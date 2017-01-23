@@ -216,4 +216,68 @@ function how_to_read(){
 
 function sidebar(){
 	
+	var template_source = "tpl/user-contributions.tpl";
+	var data_source = "data/user_contributions_api.json";
+	var target = "#sidebar";
+
+	/*
+	Handlebars.registerHelper('replace', function(str, a, b) {
+  		if (str && typeof str === 'string') {
+			if (!a || typeof a !== 'string') return str;
+			if (!b || typeof b !== 'string') b = '';
+			return str.split(a).join(b);
+  		}
+	});
+	
+	Handlebars.registerHelper('sum', function(str, a, b) {
+		var args = utils.flatten([].concat.apply([], arguments));
+		var i = args.length, sum = 0;
+		while (i--) {
+			if (!utils.isNumber(args[i])) {
+				continue;
+			}
+			sum += (+args[i]);
+		}
+		return sum;
+	});
+	*/
+
+	$.get( template_source , function(tpl) {
+		$.getJSON( data_source , function(data) {
+
+			var files = data.users;
+			//console.log(files);
+
+			files.forEach(function (d){
+				//console.log(d.files)
+				var items = d.files 
+
+				total = 0;
+
+				items.forEach(function (d){
+					//console.log(d)
+					total += d.count
+				})
+				//console.log(total)
+			})
+			
+
+			/*
+			data.nodes.sort( function(a,b) { 
+				return b.files - a.files; 
+			});
+			*/
+
+			/*data.nodes.forEach(function( x ) {
+				console.log(x.id)
+				id = x.id.replace("a"," ");
+			});
+			console.log(data.nodes[0])*/
+
+			var template = Handlebars.compile(tpl); 
+			$(target).html(template(data));
+
+			//highlight()
+		});
+	});
 }

@@ -311,6 +311,7 @@ function download(){
 
 }
 
+/*
 function download(){
 	$("#download").click(function () {
 		
@@ -318,7 +319,7 @@ function download(){
 		download(dataviz, "category_network.svg", "text/plain");
 		console.log(dataviz);
 		
-		/*var getBlob = function() {
+		var getBlob = function() {
 			return window.Blob || window.WebKitBlob || window.MozBlob;
 		}
 
@@ -341,7 +342,7 @@ function download(){
 				dataviz, { type: "data:image/svg+xml" }
 			);
 			saveAs(blob, (element.find('input').val() || element.find('input').attr("placeholder")) + ".svg")
-		}*/
+		}
 
 	});
-}
+}*/

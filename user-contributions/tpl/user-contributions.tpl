@@ -4,22 +4,20 @@
 <ul class="list">
 {{#each users}}
 	<li>
-		<div>
-			<a href="https://commons.wikimedia.org/wiki/User:{{user}}" title="{{user}}" target="_blank">
-				{{user}}
-			</a>
+		<a href="https://commons.wikimedia.org/wiki/User:{{user}}" title="{{user}}" target="_blank">
+			{{user}}
+		</a>
 
-			<ul>
-			{{#each files}}
+		<ul>
+		{{#each files}}
 
-				<li>
-					{{date}} - {{count}}
-				</li>
-			{{/each}}
-			</ul>
+			<li>
+				{{date}} - {{count}}
+			</li>
+		{{/each}}
+		</ul>
 
-		</div>
-		<div class="clear">
 	</li>
+	<div class="clear">
 {{/each}}
 </ul>
