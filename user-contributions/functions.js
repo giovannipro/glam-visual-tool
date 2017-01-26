@@ -24,6 +24,9 @@ function dataviz(){
 
 		users = data.users
 		files = data.users[0].files
+		//console.log(users)
+
+		timespan = 12;		
 
 		var height =  300, //( $(container).height() / data.users.length);
 			nomargin_h = height - (margin.top + margin.bottom);
@@ -34,15 +37,14 @@ function dataviz(){
 		test = data.users;
 
 		users.forEach(function(user) {
-
 			var files = user.files
 			var total_files = 0
 			var months = files.length
 
 			files.forEach(function(file) {
 				//console.log(file)
-
-				for ( var i = 0; i < 12; i++ ) { // months
+				
+				for ( var i = 0; i < months; i++ ) { // 12 months
 					total_files += file.count
 					//console.log(file.count)
 				}
@@ -97,16 +99,40 @@ function dataviz(){
 		var y = d3.scaleLinear()
 			.rangeRound([nomargin_h, 0]);
 
-		x.domain([
+		var date_string = (users[0].files[users[0].files.length - 1].date).toString()
+		var date_split = date_string.split(" ")
+		var year = parseInt(date_split.slice(3,4))
+		var month = parseInt(date_split.slice(2,3))	
+
+		if (month == 12){
+			var month = 1;
+			var year = parseInt(date_split.slice(3,4) + 1);
+		} 
+		else {
+			var my_year = year + 1;
+			var my_month = month;
+		}
+		
+		var new_date = new Date(my_year + "," + my_month);
+		console.log(my_year + "," + my_month)
+		console.log(new_date + 3)
+
+		x.domain([		
+			/*	
+			users.map(function(file) {
+				return file.files[0].date
+			})
+			*/
 			d3.min(users, function(file) { 
 				return file.files[0].date; 
 			}),
 			d3.max(users, function(file) { 
-				return file.files[file.files.length - 1].date; 
+				return new_date // file.files[file.files.length - 1].date; 
 			})
+			
 		]);
-		//console.log(users[0].files[0].date)
-
+		//console.log(users[0].files[users[0].files.length - 1].date)
+		
 		var max_y = d3.max(users, function(d) {
 			return d3.max(d.files, function(a) {
 				return a.count; 
@@ -132,7 +158,10 @@ function dataviz(){
 			.attr("class", "axis axis-y")
 			.call(d3.axisLeft(y))
 
-		/*
+		d3.selectAll(".tick > text")
+			.style("font-family", "verdana");
+
+		
 		// bars
 		var bars_group = plot.append("g")
 			.attr("class", function(d,i){
@@ -141,6 +170,7 @@ function dataviz(){
 			.attr("y",0)
 			.attr("x",0)
 		
+				
 		bars_group.selectAll(".bar")
 			//.data(users)
 			//.data(nested[0].values)
@@ -153,7 +183,7 @@ function dataviz(){
 				return d.count + " bar"
 			})
 			.attr("width", function(d,i) {
-				return nomargin_w / 12
+				return nomargin_w / timespan
 			})
 			.attr("height", function(d,i) { 
 				return nomargin_h - y(d.count)
@@ -165,23 +195,22 @@ function dataviz(){
 				return x(d.date)
 			})
 			.style("fill", "steelblue")
-			console.log(users[0].files)
-		*/
-
-		d3.selectAll(".tick > text")
-			.style("font-family", "verdana");
+			//console.log(users[0].files + 1)
+		
+		/*
+		var interpolation = d3.curveStepAfter; // curveLinear curveStep curveStepBefore curveStepAfter
 
 		var starting_area = d3.area()
 			.x(function(d) { return x(d.date)})
 			.y0(nomargin_h)
 			.y1(function(d) {return y(0);})
-			.curve(d3.curveStepBefore)
+			.curve(interpolation)
 
 		var area = d3.area()
 			.x(function(d) { return x(d.date); })
 			.y0(nomargin_h)
 			.y1(function(d) {return y(d.count); })
-			.curve(d3.curveStepBefore) // curveStepBefore curveStepAfter
+			.curve(interpolation)
 			
 		var line = d3.line()
 			.x(function(d) {
@@ -210,6 +239,7 @@ function dataviz(){
 			.duration(400)
 			.attr("d", area)
 			//console.log(22)
+		*/		
 	})
 }
 
