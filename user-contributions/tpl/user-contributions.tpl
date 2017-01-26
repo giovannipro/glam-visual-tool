@@ -1,4 +1,4 @@
-<div style="height:4em; border-bottom:1px solid gray; padding: 1em;">
+<div style="height:5vh; border-bottom:1px solid gray; padding: 1em;">
 	< sorting options >
 </div>
 <ul class="list">

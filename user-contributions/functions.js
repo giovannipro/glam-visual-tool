@@ -243,16 +243,6 @@ function dataviz(){
 	})
 }
 
-function how_to_read(){
-	button = $("#how_to_read > p");
-	box = $("#how_to_read .how_to_read");
-	
-	button.click(function(){
-		//console.log("click")
-		box.toggleClass("show");
-	});	
-};
-
 function sidebar(){
 	
 	var template_source = "tpl/user-contributions.tpl";

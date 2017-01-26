@@ -29,11 +29,11 @@ body
 
 // helper
 // ----------------------------------------
-div .hide
+.hide
 	display: none
 
-div .show
-	display: block
+.show
+	display: block !important
 
 .clear
 	clear: both
@@ -62,14 +62,21 @@ div .show
 
 #sub_header
 	background-color: $sub_header
+	//@include outer-container
+	width: 100%
+	height: 5vh
+
+	> div
+		padding: $x 0 $x 0
+		float: left
+		margin-left: $x / 2
+		margin-right: $x * 5
 
 	a, a:visited 
 		text-decoration: none
-	span
-		display: block
-		float: left
-		margin-right: $x * 3
-		padding: $x 0 $x 0
+
+.label 
+	font-size: $font_xs
 
 #footer_bar
 	background-color: gray
@@ -78,6 +85,14 @@ div .show
 	a
 		color: $white
 		text-decoration: none
+
+footer
+	position: absolute
+	bottom: 0
+	width: 100%
+	height: 5vh
+	background-color: $sub_header
+	padding: 0.5em
 
 // layout homepage
 // ----------------------------------------
@@ -149,24 +164,30 @@ div .show
 		background-color: $sidebar
 		overflow: scroll
 		padding-left: 0
-		height: 90vh
+		height: 85vh
 		width: 20%
 		float: left
 
-#how_to_read
-	//border: 1px solid #c5c5c5
-	//border-radius: $x * 0.3
+#settings
 	margin: 0
-	padding: ($x * 0.5) $x ($x * 0.5)
+	//padding: ($x * 0.5) $x ($x * 0.5)
+	padding: 1em
 	cursor: pointer
 	height: 5vh
+	border-bottom: 1px dotted #e3e1e1
+
+#how_to_read_button
+	margin: auto
 
 .how_to_read
-	//position: absolute
-	//@include span-columns(9)
 	display: none
 	position: absolute
-	width: 70%
+	width: 75%
+	margin: $x
+	background-color: white
+	border: 1px dotted #e3e1e1
+	padding: $x * 3
+	font-size: $font_m
 
 #sidebar 
 	display: block

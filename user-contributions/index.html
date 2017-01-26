@@ -16,31 +16,43 @@
 				</h1>
 			</div>
 		</header>
-		<div id="sub_header" class="top_bar">
-			<span>
+		<div id="sub_header" class="sub_top_bar">
+			<div>
 				<a href="../">
 					&larr; back
 				</a>
-			</span>
-			<span>
-				<a href="https://commons.wikimedia.org/w/index.php?title=Category:Media_contributed_by_the_ETH-Bibliothek" title="Media contributed by the ETH-Bibiothek" target="_blank">
-					Media contributed by the ETH-Bibliothek
-				</a>
-			</span>
-			<span>
-				User contribution
-			</span>
-			<span id="download" style="cursor:pointer;">
-				Download dataviz
-			</span>
+			</div>
+			<div>
+				<div class="label">
+					Category
+				</div>
+				<div>
+					<a href="https://commons.wikimedia.org/w/index.php?title=Category:Media_contributed_by_the_ETH-Bibliothek" title="Media contributed by the ETH-Bibiothek" target="_blank">
+						Media contributed by the ETH-Bibliothek
+					</a>
+				</div>
+			</div>
+			<div>
+				<div class="label">
+					Chart
+				</div>
+				<div>
+					User contributions
+				</div>
+			</div>
 		</div>
 		<main id="visualizations">
 			<section id="dataviz" class="v_noscore">
-				<div id="how_to_read">
-					<p style="text-decoration: underline;">How to read the visualization</p>
-					<p class="how_to_read">
-						The visualizations shows the subcategories belonging to the main category. The bubblue size shows the amount of files within every category. 
-					</p>
+				<div id="settings">
+					<div style="float:left;">
+						< Settings >
+					</div>
+					<div id="how_to_read_button" style="float:right; text-decoration: underline;">
+						How to read the visualization
+					</div>
+				</div>
+				<div class="how_to_read" style="float:right;">
+					The visualizations shows the number of media uploaded by user overtime.
 				</div>
 				<div id="user_contributions_container" class="svg_container"></div>
 			</section>
@@ -48,10 +60,21 @@
 				<div id="sidebar"></div>
 			</section>
 		</main>
+		<footer>
+			<!--<div style="float:left;">
+				< score >
+			</div>-->
+			<div style="float:right;">
+				<span id="download" style="cursor:pointer;">
+					Download dataviz
+				</span>
+			</div>
+		</footer>
 		<script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
 		<script type="text/javascript" src="../bower_components/d3/d3.min.js"></script>
 		<script type="text/javascript" src="../assets/scripts/handlebars-v4.0.5.js"></script>
 		<script type="text/javascript" src="../assets/scripts/FileSaver.js"></script>
+		<script type="text/javascript" src="../assets/scripts/main.js"></script>
 		<script type="text/javascript" src="functions.js"></script>
 	</body>
 </html>
