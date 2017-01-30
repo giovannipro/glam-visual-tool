@@ -419,22 +419,26 @@ function download(){
 	var home = baseurl.replace(h_1 + "/","")
 	var dataset_location = home + "category-network/data/category_network.json";
 
-	var storageObj = {
-		"a": 1
+	// download json
+	$.getJSON(dataset_location, function(d) {
+		var dataset = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(d));
+		$('<a href="data:' + dataset + '" download="' + "category_network.json" + '">Download dataset</a>').appendTo('#download_dataset');
+	})
+
+	svg = "<svg><text x='50' y='50'>Hello World!</text></svg>";
+
+	// download jpeg
+	function download_jpeg(){
+		var dataviz = $("#category_network_container").html();
+		filename = "category_network.svg"
+		console.log(dataviz)
+
+
+		canvg(document.getElementById('test'), svg);
 	}
+	//setTimeout(download_jpeg, 200);
 
-	//$("#download_dataset").click(function() {
 
-		var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(dataset_location));
-		/*var dlAnchorElem = document.getElementById('download_dataset');
-		dlAnchorElem.setAttribute("href",  dataStr );
-		dlAnchorElem.setAttribute("download", "category_network.json");
-		dlAnchorElem.click();*/
-		$.getJSON(dataset_location, function(d) {
-			var dataset = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(d));
-			$('<a href="data:' + dataset + '" download="' + "category_network.json" + '">Download dataset</a>').appendTo('#download_dataset');
-		})
-	//})
 
 		/*
 		$.getJSON(dataset_location, function(d) {
