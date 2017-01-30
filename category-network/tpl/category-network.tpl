@@ -1,13 +1,10 @@
-<div style="height:4em; border-bottom:1px solid gray; padding: 1em;">
-	< sorting options >
-</div>
 <ul class="list">
 {{#each nodes}}
 	<li>
-		<div class="item">
+		<div class="item" style="font-size:0.8em; margin-right:1em; width: 70%;">
 			<span class="id" id="{{id}}">
 				{{!-- {{#replace "a" "x"}} --}}
-					{{id}}
+				{{id}}
 				{{!-- {{/replace}} --}}
 			</span>
 			<br>
@@ -15,7 +12,7 @@
 				{{files}} files
 			</span>
 		</div>
-		<div class="link">
+		<div class="link" style="font-size:0.6em;">
 			<a href="https://commons.wikimedia.org/wiki/Category:{{id}}" title="{{id}}" target="_blank">
 				link
 			</a>

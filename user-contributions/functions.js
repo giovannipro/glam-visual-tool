@@ -142,6 +142,8 @@ function dataviz(){
 
 		// da 0 a max
 		y.domain([0,max_y]);
+
+		
 		//console.log(users[1].files[1].count)
 		
 		plot.append("g")

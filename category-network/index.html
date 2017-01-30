@@ -47,7 +47,7 @@
 					<div style="float:left;">
 						< Settings >
 					</div>
-					<div id="how_to_read_button" style="float:right; text-decoration: underline;">
+					<div id="how_to_read_button" style="float:right; text-decoration: underline; font-size:1em;">
 						How to read the visualization
 					</div>
 				</div>
@@ -57,7 +57,18 @@
 				<div id="category_network_container" class="svg_container"></div>
 			</section>
 			<section id="left_sidebar">
-				<div id="sidebar"></div>
+				<div id="sidebar_box">
+					<div style="height:4em; border-bottom:1px solid gray; padding: 1em;">
+						<span style="font-size:0.6em; cursor:pointer;" id="desc_order">
+							descending order
+						</span>
+						/
+						<span style="font-size:0.6em; cursor:pointer;" id="asc_order" class="underline">
+							ascending order
+						</span>
+					</div>
+					<div id="sidebar"></div>
+				</div>
 			</section>
 		</main>
 		<footer>
@@ -70,6 +81,18 @@
 				</span>
 			</div>
 		</footer>
+		<style>
+			.underline {
+				text-decoration: underline; 
+			}
+			.selected_circle {
+				stroke: red;
+				stroke-width: 3px;
+			}
+			.selected_list_item {
+				color:red;
+			}
+		</style>
 		<script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
 		<script type="text/javascript" src="../bower_components/d3/d3.min.js"></script>
 		<script type="text/javascript" src="../assets/scripts/handlebars-v4.0.5.js"></script>

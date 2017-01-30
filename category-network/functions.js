@@ -2,8 +2,8 @@ $(document).ready(function(){
 	//get_data();
 	dataviz();
 	how_to_read();
-	sidebar();
-	download();
+	sidebar("desc_order");
+	//download();
 })
 
 // main variables
@@ -96,9 +96,9 @@ function dataviz(){
     	
     	// replace "_" with " "
     	$.each(data.nodes, function(i,v) {
-    		id = v.id.replace("_","")
+    		v.id = v.id//.replace(/_/g," ")
     		//console.log(id)
-    		return id
+    		//return id
     	})
 
     	var max_file = d3.max(files),
@@ -129,12 +129,12 @@ function dataviz(){
 
 		var nodes = plot.append("g")
 	  		.attr("class", "nodes")
-			.selectAll(".node")
+			.selectAll(".nodes")
 			.data(data.nodes)
 			.enter()
 			.append("g")
 			.attr("class",function(d,i){
-				return d.id
+				return d.id + " node" //.replace(/_/g," ")
 			})  	
 	  		.call(d3.drag()
 			  	.on("start", dragstarted)
@@ -225,7 +225,43 @@ function how_to_read(){
  	
 }
 
-function sidebar() {
+function sorting_sidebar(){
+	$("#asc_order").on("click", function(){
+		//console.log("asc_order");
+		var button = $("#asc_order");
+
+		if ($("#asc_order").hasClass("underline") ) {
+			$("#asc_order").removeClass("underline");
+			$("#desc_order").toggleClass("underline");
+			$(".list > li").removeClass("selected_list_item");
+			$("#category_network_container").find(".circle").removeClass("selected_circle");
+			//console.log("già selezionato")
+		}
+		else{
+			//console.log("non selezionato")
+		}
+		sidebar("asc_order")
+	})
+
+	$("#desc_order").on("click", function(){
+		//console.log("asc_order");
+		var button = $("#asc_order");
+
+		if ($("#desc_order").hasClass("underline") ) {
+			$("#desc_order").removeClass("underline");
+			$("#asc_order").toggleClass("underline");
+			$(".list > li").removeClass("selected_list_item");
+			$("#category_network_container").find(".circle").removeClass("selected_circle");
+			//console.log("già selezionato")
+		}
+		else{
+			//console.log("non selezionato")
+		}
+		sidebar("desc_order")
+	})
+}
+
+function sidebar(order) {
 
 	var template_source = "tpl/category-network.tpl";
 	var data_source = "data/category_network.json";
@@ -239,53 +275,79 @@ function sidebar() {
   		}
 	});
 
-	$.get( template_source , function(tpl) {
-		$.getJSON( data_source , function(data) {
-
-			data.nodes.sort( function(a,b) { 
-				return b.files - a.files; 
-			});
-
-			/*data.nodes.forEach(function( x ) {
-				console.log(x.id)
-				id = x.id.replace("a"," ");
-			});
-			console.log(data.nodes[0])*/
-
-			var template = Handlebars.compile(tpl); 
-			$(target).html(template(data));
-
-			highlight()
-		});
-	});
-
 	function highlight(){
+
+		// from Sidebar to Dataviz
 		$(".list").on("click", "li" , function(){
-
-			/*
-			node = $(".nodes").find("g").find("circle")
-			//node.css("transform","scale(1,1)")
-			node.css("stroke","white")
-			$(".list > li").find(".id").css("color","black");
-			*/
-
-			$(".list > li").removeClass("selected_list_item");
-			$("#category_network_cont .circle").removeClass("selected_circle");
-
 			element = $(this).find(".id").attr("id"); //.text() //.toString();
 			//console.log(element);
 
-			var scale = 2;
-
-			node_selected = $("#category_network_cont").find("." + element).children(".circle")
-			//console.log(node_selected)
+			// reset Sidebar - Dataviz
+			$("#sidebar .id").removeClass("selected_list_item"); // .list > li
+			$("#category_network_container").find(".circle").removeClass("selected_circle");
 			
-			//node_selected.css("transform","scale(" + scale + "," + scale + ")")
+			// highlight Dataviz
+			node_selected = $("#category_network_container").find("." + element).children(".circle")
 			node_selected.toggleClass("selected_circle");
-			$(this).toggleClass("selected_list_item");
 
+			// highlight Sidebar
+			selected = $(this).find(".id");
+			selected.toggleClass("selected_list_item");
+			//console.log("." + element)
 		});
+
+		// from Dataviz to Graph 
+		$(".node").on("click", function(){
+			e = $(this).attr("class");
+			element = e.split(" ",1)//.toString();
+			//console.log(element)
+			
+			// reset Sidebar - Dataviz
+			$("#sidebar .id").removeClass("selected_list_item");
+			$("#category_network_container").find(".circle").removeClass("selected_circle");
+			
+			// highlight Dataviz
+			node_selected = $(this).children(".circle")
+			node_selected.toggleClass("selected_circle");
+			//console.log(element)
+			
+			// highlight Sidebar
+			selected = $("#sidebar").find("#" + element)
+			selected.toggleClass("selected_list_item");
+			//console.log(selected)
+		})
 	}
+
+	$.get( template_source , function(tpl) {
+		$.getJSON( data_source , function(d) {
+
+			if (order == "desc_order"){
+				d.nodes.sort( function(a,b) { 
+					return b.files - a.files; 
+				});				
+			}
+			else if (order == "asc_order") {
+				d.nodes.sort( function(a,b) { 
+					return a.files - b.files; 
+				});					
+			}
+			//console.log(d);
+
+			/*
+			$.each(d.nodes, function(i,v) {
+	    		v.id = v.id.replace(/_/g," ")
+    		})
+			//console.log(d);
+			*/
+
+			var template = Handlebars.compile(tpl); 
+			$(target).html(template(d));
+
+			sorting_sidebar();
+			highlight();
+			
+		});
+	});
 }
 /*
 function download(){
