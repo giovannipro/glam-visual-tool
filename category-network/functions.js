@@ -438,6 +438,75 @@ function download(){
 	}
 	//setTimeout(download_jpeg, 200);
 
+var exportPNG = function() {
+
+    /*
+    Based off  gustavohenke's svg2png.js
+    https://gist.github.com/gustavohenke/9073132
+    */
+        
+    var svg = document.querySelector( "svg" );
+    var svgData = new XMLSerializer().serializeToString( svg );
+
+    var canvas = document.createElement( "canvas" );
+    var ctx = canvas.getContext( "2d" );
+
+    var dataUri = '';
+    try {
+        dataUri = 'data:image/svg+xml;base64,' + btoa(svgData);
+    } catch (ex) {
+        
+        // For browsers that don't have a btoa() method, send the text off to a webservice for encoding
+        /* Uncomment if needed
+        $.ajax({
+            url: "http://www.mysite.com/webservice/encodeString",
+            data: { svg: svgData },
+            type: "POST",
+            async: false,
+            success: function(encodedSVG) {
+                dataUri = 'data:image/svg+xml;base64,' + encodedSVG;
+            }
+        })
+        */
+
+    }
+    
+    var img = document.createElement( "img" );
+
+    img.onload = function() {
+        ctx.drawImage( img, 0, 0 );
+
+        try {
+                                            
+            // Try to initiate a download of the image
+            var a = document.createElement("a");
+            a.download = "network.png";
+            a.href = canvas.toDataURL("image/png");
+            document.querySelector("body").appendChild(a);
+            a.click();
+            document.querySelector("body").removeChild(a);
+                                            
+        } catch (ex) {
+    
+            // If downloading not possible (as in IE due to canvas.toDataURL() security issue) 
+            // then display image for saving via right-click
+            
+            var imgPreview = document.createElement("div");
+            imgPreview.appendChild(img);
+            document.querySelector("body").appendChild(imgPreview);
+    
+        }
+    };
+    console.log(dataUri);
+    img.src = dataUri;
+    
+}
+
+$("#download_dataviz").click(function () {
+	// http://jsfiddle.net/chprpipr/U7PLZ/4/
+	//http://piperjosh.com/2014/05/exporting-svg-graphics-png-jpg/
+	exportPNG()
+})
 
 
 		/*
