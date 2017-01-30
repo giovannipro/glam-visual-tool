@@ -1,11 +1,3 @@
-$(document).ready(function(){
-	//get_data();
-	dataviz();
-	how_to_read();
-	sidebar("desc_order");
-	//download();
-})
-
 // main variables
 // ----------------------------------------
 
@@ -89,22 +81,22 @@ function dataviz(){
 
 		var files = [];
   		data.nodes.forEach(function(node) {
-    		files.push(
-    			node.files
-    		);
-    	})
-    	
-    	// replace "_" with " "
-    	$.each(data.nodes, function(i,v) {
-    		v.id = v.id//.replace(/_/g," ")
-    		//console.log(id)
-    		//return id
-    	})
+			files.push(
+				node.files
+			);
+		})
+		
+		// replace "_" with " "
+		$.each(data.nodes, function(i,v) {
+			v.id = v.id//.replace(/_/g," ")
+			//console.log(id)
+			//return id
+		})
 
-    	var max_file = d3.max(files),
-    		node_lenght = data.nodes.length,
-    		circle_size = ((width / (max_file * 2)) / (node_lenght * 0.5) );
-    		//console.log(circle_size)
+		var max_file = d3.max(files),
+			node_lenght = data.nodes.length,
+			circle_size = ((width / (max_file * 2)) / (node_lenght * 0.5) );
+			//console.log(circle_size)
 
 		var simulation = d3.forceSimulation()
 			.force("link", d3.forceLink().id(function(d) { 
@@ -148,11 +140,11 @@ function dataviz(){
 					return 10
 				}
 				else {
-					if (d.files < 200) {
-						return (d.files * circle_size) * 5
+					if (d.files < (max_file/5) ) { //200
+						return (d.files * circle_size) * 1.5 //5
 					}
 					else {
-						return (d.files  * circle_size) * 1.5
+						return (d.files  * circle_size) * 1
 					}
 				}	
 			})
@@ -261,6 +253,47 @@ function sorting_sidebar(){
 	})
 }
 
+function get_sidebar_data() {
+
+	/*
+	var template_source = "tpl/category-network.tpl";
+	var data_source = "data/category_network.json";
+	var target = "#sidebar";
+
+	Handlebars.registerHelper('replace', function(str, a, b) {
+  		if (str && typeof str === 'string') {
+			if (!a || typeof a !== 'string') return str;
+			if (!b || typeof b !== 'string') b = '';
+			return str.split(a).join(b);
+  		}
+	});
+
+	$.getJSON( data_source , function(d) {
+
+		var ascending = [];
+		var descending = [];
+
+		d.nodes.sort( function(a,b) { 
+			return b.files - a.files; 
+		});	
+		$.each(d.nodes, function(i,v){
+			ascending.push(v)
+		})
+
+		d.nodes.sort( function(a,b) { 
+			return a.files - b.files; 
+		});	
+		$.each(d.nodes, function(i,v){
+			descending.push(v)
+		})
+		descending.push(d.nodes)
+
+		console.log(ascending)
+		console.log(descending)
+	})
+	*/
+}
+
 function sidebar(order) {
 
 	var template_source = "tpl/category-network.tpl";
@@ -335,8 +368,8 @@ function sidebar(order) {
 
 			/*
 			$.each(d.nodes, function(i,v) {
-	    		v.id = v.id.replace(/_/g," ")
-    		})
+				v.id = v.id.replace(/_/g," ")
+			})
 			//console.log(d);
 			*/
 
@@ -349,14 +382,86 @@ function sidebar(order) {
 		});
 	});
 }
-/*
+
+
+
+function switch_page() {
+	/*$("#switch_page").change(function() {
+		//page = $(this).val();
+		//console.log(page)
+	})​*/
+	//var baseurl = window.location.protocol + "//" + window.location.host + "/"
+	var baseurl = document.location.href;
+	var h = baseurl.split("/")
+	var h_1 = h[h.length-2]
+	var home = baseurl.replace(h_1 + "/","")
+	//console.log(home)
+
+	$('#switch_page').change(function(){
+		var page = $(this).val();
+		var url = home + page;
+		console.log(url);
+
+		if (url != '') {
+            window.location = url;
+        }
+        return false;
+    	
+  	});
+
+}
+
+
 function download(){
-	$("#download").click(function () {
+	var baseurl = document.location.href;
+	var h = baseurl.split("/")
+	var h_1 = h[h.length-2]
+	var home = baseurl.replace(h_1 + "/","")
+	var dataset_location = home + "category-network/data/category_network.json";
+
+	var storageObj = {
+		"a": 1
+	}
+
+	//$("#download_dataset").click(function() {
+
+		var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(dataset_location));
+		/*var dlAnchorElem = document.getElementById('download_dataset');
+		dlAnchorElem.setAttribute("href",  dataStr );
+		dlAnchorElem.setAttribute("download", "category_network.json");
+		dlAnchorElem.click();*/
+		$.getJSON(dataset_location, function(d) {
+			var dataset = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(d));
+			$('<a href="data:' + dataset + '" download="' + "category_network.json" + '">Download dataset</a>').appendTo('#download_dataset');
+		})
+	//})
+
+		/*
+		$.getJSON(dataset_location, function(d) {
+			var file = d.edges;
+			console.log(file);
+
+			var file = new File(file, "category_network.json", {type: "text/plain;charset=utf-8"});
+			saveAs(file);
+		})
+		*/
 		
+		//e.preventDefault();  //stop the browser from following
+		//window.location.href = dataset_location;
+		
+		/*
+		download(dataset_location, "category_network.json", "text/plain");
+		console.log(dataset_location)
+		*/
+	//});
+
+		/*
 		var dataviz = $("#category_network_container").html();
 		download(dataviz, "category_network.svg", "text/plain");
 		console.log(dataviz);
+		*/
 		
+		/*
 		var getBlob = function() {
 			return window.Blob || window.WebKitBlob || window.MozBlob;
 		}
@@ -364,14 +469,15 @@ function download(){
 		var BB = getBlob();
 		var dataviz = $("#category_network_container").html();
 		filename = "category_network.svg"
-
+		
 		download(dataviz);
-		console.log("test")
-	})
+		*/
+		//console.log("test")
+	//})
 
-		//var isSafari = (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1);
+	//var isSafari = (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1);
 }
-*/
+
 
 /*
 function download(){
@@ -408,3 +514,22 @@ function download(){
 
 	});
 }*/
+
+function how_to_read(){
+	button = $("#how_to_read_button");
+	box = $(".how_to_read");
+	
+	$("#how_to_read_button").click(function(){
+		box.toggleClass("show");
+		// console.log("click")
+	});
+};
+
+$(document).ready(function(){
+	dataviz();
+	switch_page();
+	sidebar("desc_order");
+	how_to_read();
+	get_sidebar_data();
+	download();
+})

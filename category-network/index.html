@@ -37,7 +37,11 @@
 					Chart
 				</div>
 				<div>
-					Category network
+					<select id="switch_page">
+						<option value="category_network">Category network</option>
+						<option value="user-contributions">User contributions</option>
+						<option value="page-views">Page views</option>
+					</select>
 				</div>
 			</div>
 		</div>
@@ -45,7 +49,7 @@
 			<section id="dataviz" class="v_noscore">
 				<div id="settings">
 					<div style="float:left;">
-						< Settings >
+						<!--< Settings >-->
 					</div>
 					<div id="how_to_read_button" style="float:right; text-decoration: underline; font-size:1em;">
 						How to read the visualization
@@ -76,9 +80,11 @@
 				< score >
 			</div>-->
 			<div style="float:right;">
-				<span id="download" style="cursor:pointer;">
+				<span id="download_dataviz" style="cursor:pointer;">
 					Download dataviz
 				</span>
+				&bull;
+				<span id="download_dataset" style="cursor:pointer;"></span>
 			</div>
 		</footer>
 		<style>
@@ -92,12 +98,16 @@
 			.selected_list_item {
 				color:red;
 			}
+			#visualizations #left_sidebar {
+				overflow-y: auto;
+				overflow-x: hidden; 
+			}
 		</style>
 		<script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
 		<script type="text/javascript" src="../bower_components/d3/d3.min.js"></script>
 		<script type="text/javascript" src="../assets/scripts/handlebars-v4.0.5.js"></script>
 		<script type="text/javascript" src="../assets/scripts/FileSaver.js"></script>
-		<script type="text/javascript" src="../assets/scripts/main.js"></script>
+		<!--<script type="text/javascript" src="../assets/scripts/main.js"></script>-->
 		<script type="text/javascript" src="functions.js"></script>
 	</body>
 </html>
