@@ -9,46 +9,60 @@ var margin = {top: 50, right: 50, bottom: 50, left: 50},
 nomargin_w = width - (margin.left + margin.right),
 nomargin_h = height - (margin.top + margin.bottom);
 
+var baseurl = document.location.href;
+var h = baseurl.split("/")
+var h_1 = h[h.length-2]
+var home = baseurl.replace(h_1 + "/","")
+
 // get data
 // ----------------------------------------
 
 function get_data(){
 	data_source = "../assets/scripts/credentials.json";
 	var url = "http://cassandra.synapta.io/api/ETH/";
+	var api = "category"
 	var user = "";
 	var pass = "";
-	var api = "category"
+	//var cross_origin = "https://crossorigin.me/"
+	var proxy = "assets/scripts/proxy.php" + "?url=";  //cross_origin + url + api,
+	var request = home + proxy + url + api;
+	console.log(request);
 
 	$.getJSON(data_source, function(data) {
-		//console.log(data)
-		var user = data.user;
-		var pass = data.pass;
-	})
+		//console.log(data[0])
+		var user = data[0].user;
+		var pass = data[0].pass;
+		
+		console.log(user)
 
-	$.getJSON({
-		type: "GET",
-		url: url + api,
-		dataType: "JSONP",
-		jsonpCallback: "callback",
-		data: {
-			username: user, 
-			password: pass
-		},
-		header:"Access-Control-Allow-Origin: *",
-		async: true,
-		success: function (data){
-			var a = jQuery.parseJSON(data)
-			//JSON.parse(" " + data + ""); 
-			//data //parseJSON(data)
-			//var newData = data;
-			//a = JSON.stringify(data); // parse
-			console.log(data[0])
-		},
-		error: function(x){
-			console.log(x)
-		}
+		$.ajax({ // ajax getJSON
+			type: "GET",
+			url: request,
+			dataType: "JSON", // JSONP JSON
+			//username: user,
+			//password: pass,
+			//jsonpCallback: "callback",
+			/*data: {
+				username: user, 
+				password: pass
+			},*/
+			header:"Access-Control-Allow-Origin: *",
+			async: true,
+			success: function (data){
+				var a = jQuery.parseJSON(data)
+				//JSON.parse(" " + data + ""); 
+				//data //parseJSON(data)
+				//var newData = data;
+				//a = JSON.stringify(data); // parse
+				console.log(data)
+				console.log(a)
+			},
+			error: function(x){
+				console.log(x)
+			}
+		})
+		console.log(11)	
 	})
-	console.log(7)
 }
 
 // dataviz
@@ -605,6 +619,7 @@ function how_to_read(){
 };
 
 $(document).ready(function(){
+	//get_data();
 	dataviz();
 	switch_page();
 	sidebar("desc_order");
