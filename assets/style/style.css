@@ -4,12 +4,6 @@ html {
 *, *::after, *::before {
   box-sizing: inherit; }
 
-body {
-  font-family: "Open Sans", Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  color: black; }
-
 .hide {
   display: none; }
 
@@ -18,6 +12,20 @@ body {
 
 .clear {
   clear: both; }
+
+.underline {
+  text-decoration: underline; }
+
+.overflow_hidden {
+  overflow: hidden;
+  height: 100%; }
+
+body {
+  font-family: "Open Sans", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fdfdfd;
+  color: black; }
 
 .container {
   max-width: 70%;
@@ -36,8 +44,11 @@ body {
       margin-right: 0; }
 
 .top_bar {
-  height: 5vh;
-  padding: 0.5em; }
+  min-height: 3em;
+  padding: 0 0.5em;
+  position: fixed;
+  top: 0;
+  width: 100%; }
 
 #topbar {
   background-color: #0D6FF6; }
@@ -49,33 +60,43 @@ body {
 
 #sub_header {
   background-color: #dcdcdc;
+  position: fixed;
+  top: 3em;
   width: 100%;
-  height: 5vh; }
+  min-height: 3em; }
   #sub_header > div {
-    padding: 1em 0 1em 0;
+    padding: 0.3em 0 0.3em 0;
     float: left;
     margin-left: 0.5em;
     margin-right: 5em; }
+  #sub_header > div:last-child {
+    margin-right: 0; }
   #sub_header a, #sub_header a:visited {
     text-decoration: none; }
 
 .label {
   font-size: 0.6em; }
 
-#footer_bar {
-  background-color: gray;
-  margin-top: 4em; }
-  #footer_bar a {
-    color: white;
-    text-decoration: none; }
-
 footer {
+  min-height: 3em;
+  padding: 0.5em; }
+
+.footer_home {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 5vh;
-  background-color: #dcdcdc;
-  padding: 0.5em; }
+  background-color: gray;
+  min-height: 3em; }
+  .footer_home a {
+    color: white;
+    text-decoration: none; }
+
+.footer_bar {
+  position: absolute;
+  bottom: 0;
+  width: 80%; }
+  .footer_bar a {
+    text-decoration: none; }
 
 #cover {
   height: 30em;
@@ -112,7 +133,6 @@ footer {
   margin-left: auto;
   margin-right: auto;
   padding: 0;
-  margin-top: 3em;
   overflow: hidden; }
   #data_visualizations::after {
     clear: both;
@@ -167,7 +187,10 @@ footer {
 #visualizations {
   max-width: 100%;
   margin-left: auto;
-  margin-right: auto; }
+  margin-right: auto;
+  height: 100%;
+  overflow: hidden;
+  margin-top: 6em; }
   #visualizations::after {
     clear: both;
     content: "";
@@ -177,22 +200,27 @@ footer {
     width: 80%;
     float: left; }
   #visualizations #left_sidebar {
+    height: 100%;
     background-color: #f1f1f1;
-    overflow: scroll;
     padding-left: 0;
-    height: 85vh;
     width: 20%;
     float: left; }
+  #visualizations #sidebar_box {
+    height: 100%; }
+  #visualizations #sidebar {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 90vh; }
 
 #settings {
   margin: 0;
-  padding: 1em;
   cursor: pointer;
-  height: 5vh;
+  height: 2.5em;
   border-bottom: 1px dotted #e3e1e1; }
 
 #how_to_read_button {
-  margin: auto; }
+  margin: 0.4em;
+  font-size: 0.8em; }
 
 .how_to_read {
   display: none;
@@ -202,26 +230,26 @@ footer {
   background-color: white;
   border: 1px dotted #e3e1e1;
   padding: 3em;
-  font-size: 1em; }
+  font-size: 0.8em; }
 
 #sidebar {
-  display: block; }
+  display: block;
+  position: relative; }
   #sidebar ul {
     margin: 0;
     padding: 0;
     list-style: none; }
-  #sidebar .list {
-    margin-bottom: 3em;
-    display: block; }
-    #sidebar .list li {
-      padding: 0.5em;
-      border-bottom: 1px solid white; }
-    #sidebar .list li:hover {
-      cursor: pointer; }
-    #sidebar .list .item {
+  #sidebar .list_item {
+    display: block;
+    border-bottom: 1px solid #fdfdfd;
+    padding: 0.5em;
+    cursor: pointer; }
+  #sidebar .list_item:last-child {
+    margin-bottom: 60px; }
+    #sidebar .list_item:last-child .item {
       width: 80%;
       float: left; }
-    #sidebar .list .link {
+    #sidebar .list_item:last-child .link {
       width: 20%;
       float: right; }
 
@@ -238,7 +266,7 @@ h2 {
   text-decoration: none; }
 
 #category_network_container {
-  height: 85vh;
+  height: 80%;
   overflow-y: hidden; }
   #category_network_container .edges {
     stroke: #999;
@@ -265,5 +293,18 @@ h2 {
 
 #score {
   height: 10%; }
+
+#sorting_options {
+  font-size: 0.8em;
+  padding: 0.5em;
+  border-bottom: 1px solid gray;
+  height: 3em; }
+
+.selected_circle {
+  stroke: red;
+  stroke-width: 3px; }
+
+.selected_list_item {
+  color: red; }
 
 /*# sourceMappingURL=style.css.map */

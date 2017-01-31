@@ -1,11 +1,8 @@
-<ul class="list">
 {{#each nodes}}
-	<li>
-		<div class="item" style="font-size:0.8em; margin-right:1em; width: 70%;">
+	<div class="list_item">
+		<div class="item">
 			<span class="id" id="{{id}}">
-				{{!-- {{#replace "a" "x"}} --}}
 				{{id}}
-				{{!-- {{/replace}} --}}
 			</span>
 			<br>
 			<span>
@@ -17,7 +14,6 @@
 				link
 			</a>
 		</div>
-		<div class="clear">
-	</li>
+		<div class="clear"></div>
+	</div>
 {{/each}}
-</ul>

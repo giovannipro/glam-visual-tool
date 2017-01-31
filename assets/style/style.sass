@@ -17,18 +17,14 @@ $cover_background: #e2e2e2
 $dataviz: gray
 $sub_header: #dcdcdc
 $black: black
-$white: white
+$white: #fdfdfd
 $line: gray
 $sidebar: #f1f1f1
 
-body
-	font-family: 'Open Sans', Arial, sans-serif
-	margin: 0
-	padding: 0
-	color: $black
 
 // helper
 // ----------------------------------------
+
 .hide
 	display: none
 
@@ -38,9 +34,23 @@ body
 .clear
 	clear: both
 
+.underline
+	text-decoration: underline
+
+.overflow_hidden
+	overflow: hidden
+	height: 100%
 
 // general layout
 // ----------------------------------------
+
+body
+	font-family: 'Open Sans', Arial, sans-serif
+	margin: 0
+	padding: 0
+	background-color: $white
+	color: $black
+
 .container
 	+outer-container(70%)
 
@@ -48,8 +58,11 @@ body
 		@include span-columns(12)
 
 .top_bar
-	height: 5vh
-	padding: $x * 0.5
+	min-height: $x * 3
+	padding: 0 ($x * 0.5)
+	position: fixed
+	top: 0
+	width: 100%
 
 #topbar
 	background-color: $main_color
@@ -61,16 +74,21 @@ body
 		font-size: $font_s
 
 #sub_header
-	background-color: $sub_header
 	//@include outer-container
+	background-color: $sub_header
+	position: fixed
+	top: $x * 3
 	width: 100%
-	height: 5vh
+	min-height: $x * 3
 
 	> div
-		padding: $x 0 $x 0
+		padding: ($x * 0.3) 0 ($x * 0.3) 0
 		float: left
 		margin-left: $x / 2
 		margin-right: $x * 5
+
+	> div:last-child
+		margin-right: 0
 
 	a, a:visited 
 		text-decoration: none
@@ -78,21 +96,29 @@ body
 .label 
 	font-size: $font_xs
 
-#footer_bar
-	background-color: gray
-	margin-top: $x * 4
-
-	a
-		color: $white
-		text-decoration: none
-
 footer
+	min-height: $x * 3
+	padding: 0.5em
+
+.footer_home
 	position: absolute
 	bottom: 0
 	width: 100%
-	height: 5vh
-	background-color: $sub_header
-	padding: 0.5em
+	background-color: gray
+	min-height: $x * 3
+
+	a
+		color: white
+		text-decoration: none
+	
+.footer_bar
+	//background-color: $sub_header
+	position: absolute
+	bottom: 0
+	width: 80%
+
+	a
+		text-decoration: none
 
 // layout homepage
 // ----------------------------------------
@@ -120,7 +146,6 @@ footer
 #data_visualizations
 	@include outer-container
 	padding: 0
-	margin-top: $x * 3 
 	overflow: hidden
 
 	li
@@ -148,7 +173,9 @@ footer
 
 #visualizations
 	+outer-container(100%)
-	//height: 100%
+	height: 100%
+	overflow: hidden
+	margin-top: $x * 6
 
 	#dataviz
 		//padding: $x 0 0 $x
@@ -161,23 +188,32 @@ footer
 	#left_sidebar
 		//@include span-columns(3)
 		//border-left: 1px solid gray
+		//overflow: scroll
+		height: 100%
 		background-color: $sidebar
-		overflow: scroll
 		padding-left: 0
-		height: 85vh
 		width: 20%
 		float: left
+
+	#sidebar_box
+		height: 100%
+
+	#sidebar
+		overflow-y: auto
+		overflow-x: hidden
+		height: 90vh // calc(100% - 50px) 100vh
 
 #settings
 	margin: 0
 	//padding: ($x * 0.5) $x ($x * 0.5)
-	padding: 1em
+	//padding: 1em
 	cursor: pointer
-	height: 5vh
+	height: 2.5em
 	border-bottom: 1px dotted #e3e1e1
 
 #how_to_read_button
-	margin: auto
+	margin: ($x * 0.4)
+	font-size: $font_s
 
 .how_to_read
 	display: none
@@ -187,27 +223,27 @@ footer
 	background-color: white
 	border: 1px dotted #e3e1e1
 	padding: $x * 3
-	font-size: $font_m
+	font-size: $font_s
 
 #sidebar 
 	display: block
+	position: relative
 
 	ul
 		margin: 0
 		padding: 0
 		list-style: none
 
-	.list
+	.list_item
 		//padding: $x
-		margin-bottom: $x * 3
+		//margin-bottom: $x * 3
 		display: block
+		border-bottom: 1px solid $white
+		padding: $x * 0.5
+		cursor: pointer
 
-		li
-			padding: $x * 0.5
-			border-bottom: 1px solid $white
-
-		li:hover
-			cursor: pointer
+	.list_item:last-child
+		margin-bottom: 60px
 			
 		.item
 			width: 80%
@@ -236,7 +272,7 @@ h2
 // ----------------------------------------
 
 #category_network_container
-	height: 85vh
+	height: 80%
 	overflow-y: hidden
 
 	.edges 
@@ -268,4 +304,19 @@ h2
 
 #score
 	height: 10%
+
+#sorting_options
+	font-size: $font_s
+	padding: $x * 0.5
+	border-bottom: 1px solid gray
+	height: $x * 3
+
+// category network
+// ----------------------------------------
 	
+.selected_circle
+	stroke: red
+	stroke-width: 3px
+
+.selected_list_item
+	color: red

@@ -18,7 +18,7 @@ var home = baseurl.replace(h_1 + "/","")
 // ----------------------------------------
 
 function get_data(){
-	data_source = "../assets/scripts/credentials.json";
+	var data_source = "../assets/scripts/credentials.json";
 	var url = "http://cassandra.synapta.io/api/ETH/";
 	var api = "category"
 	var user = "";
@@ -230,7 +230,6 @@ function how_to_read(){
 		//console.log("click")
 		box.toggleClass("show");
 	});
- 	
 }
 
 function sorting_sidebar(){
@@ -240,7 +239,7 @@ function sorting_sidebar(){
 
 		if ($("#asc_order").hasClass("underline") ) {
 			$("#asc_order").removeClass("underline");
-			$("#desc_order").toggleClass("underline");
+			$("#by_name").toggleClass("underline");
 			$(".list > li").removeClass("selected_list_item");
 			$("#category_network_container").find(".circle").removeClass("selected_circle");
 			//console.log("già selezionato")
@@ -251,6 +250,7 @@ function sorting_sidebar(){
 		sidebar("asc_order")
 	})
 
+	/*
 	$("#desc_order").on("click", function(){
 		//console.log("asc_order");
 		var button = $("#asc_order");
@@ -266,6 +266,17 @@ function sorting_sidebar(){
 			//console.log("non selezionato")
 		}
 		sidebar("desc_order")
+	})
+	*/
+
+	$("#by_name").on("click", function(){
+		if ($("#by_name").hasClass("underline") ) {
+			$("#by_name").removeClass("underline");
+			$("#asc_order").toggleClass("underline");
+			$("#desc_order").toggleClass("underline");
+			$("#category_network_container").find(".circle").removeClass("selected_circle");
+		}
+		sidebar("by_name")
 	})
 }
 
@@ -316,6 +327,7 @@ function sidebar(order) {
 	var data_source = "data/category_network.json";
 	var target = "#sidebar";
 
+	/*
 	Handlebars.registerHelper('replace', function(str, a, b) {
 		if (str && typeof str === 'string') {
 			if (!a || typeof a !== 'string') return str;
@@ -323,11 +335,12 @@ function sidebar(order) {
 			return str.split(a).join(b);
 		}
 	});
+	*/
 
 	function highlight(){
 
 		// from Sidebar to Dataviz
-		$(".list").on("click", "li" , function(){
+		$(".list_item").on("click", ".item" , function(){
 			element = $(this).find(".id").attr("id"); //.text() //.toString();
 			//console.log(element);
 
@@ -380,6 +393,11 @@ function sidebar(order) {
 					return a.files - b.files; 
 				});					
 			}
+			if (order == "by_name"){
+				d.nodes.sort( function(a,b) { 
+					return a.id - b.id; 
+				});		
+			}
 			//console.log(d);
 
 			/*
@@ -398,8 +416,6 @@ function sidebar(order) {
 		});
 	});
 }
-
-
 
 function switch_page() {
 	/*$("#switch_page").change(function() {

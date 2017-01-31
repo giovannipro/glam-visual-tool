@@ -8,7 +8,7 @@
 		<link rel="stylesheet" href="../assets/style/style.css"/>
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700" rel="stylesheet">
 	</head>
-	<body>
+	<body class="overflow_hidden">
 		<header id="topbar" class="top_bar">
 			<div><!-- class="container" -->
 				<h1>
@@ -48,9 +48,9 @@
 		<main id="visualizations">
 			<section id="dataviz" class="v_noscore">
 				<div id="settings">
-					<div style="float:left;">
-						<!--< Settings >-->
-					</div>
+					<!--<div style="float:left;">
+						< Settings >
+					</div>-->
 					<div id="how_to_read_button" style="float:right; text-decoration: underline; font-size:1em;">
 						How to read the visualization
 					</div>
@@ -62,50 +62,37 @@
 			</section>
 			<section id="left_sidebar">
 				<div id="sidebar_box">
-					<div style="height:4em; border-bottom:1px solid gray; padding: 1em;">
+					<div  id="sorting_options">
 						<span style="font-size:0.6em; cursor:pointer;" id="desc_order">
-							descending order
+							by total
 						</span>
 						/
-						<span style="font-size:0.6em; cursor:pointer;" id="asc_order" class="underline">
-							ascending order
+						<!--<span style="font-size:0.6em; cursor:pointer;" id="asc_order" class="underline">
+							asc. order
+						</span> / -->
+						<span style="font-size:0.6em; cursor:pointer;" id="by_name" class="underline">
+							by name
 						</span>
 					</div>
 					<div id="sidebar"></div>
 				</div>
 				<!--<div id="test"></div>-->
 			</section>
+		
+			<footer class="footer_bar">
+				<!--<div style="float:left;">
+					< score >
+				</div>-->
+				<div style="float:right;">
+					<span id="download_dataviz" style="cursor:pointer;">
+						Download dataviz
+					</span>
+					&bull;
+					<span id="download_dataset" style="cursor:pointer;"></span>
+				</div>
+			</footer>
 		</main>
-		<footer>
-			<!--<div style="float:left;">
-				< score >
-			</div>-->
-			<div style="float:right;">
-				<span id="download_dataviz" style="cursor:pointer;">
-					Download dataviz
-				</span>
-				&bull;
-				<span id="download_dataset" style="cursor:pointer;"></span>
-			</div>
-		</footer>
 		<style>
-			body {
-				overflow: hidden;
-			}
-			.underline {
-				text-decoration: underline; 
-			}
-			.selected_circle {
-				stroke: red;
-				stroke-width: 3px;
-			}
-			.selected_list_item {
-				color:red;
-			}
-			#visualizations #left_sidebar {
-				overflow-y: auto;
-				overflow-x: hidden; 
-			}
 		</style>
 		<script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
 		<script type="text/javascript" src="../bower_components/d3/d3.min.js"></script>
