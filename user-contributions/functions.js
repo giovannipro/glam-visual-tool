@@ -1,9 +1,3 @@
-$(document).ready(function(){
-	dataviz();
-	how_to_read();
-	sidebar();
-})
-
 // dataviz
 // ----------------------------------------
 
@@ -28,7 +22,7 @@ function dataviz(){
 
 		timespan = 12;		
 
-		var height =  300, //( $(container).height() / data.users.length);
+		var height =  300, // ( $(container).height() / data.users.length);
 			nomargin_h = height - (margin.top + margin.bottom);
 
 		var parseTime = d3.timeParse("%Y/%m")
@@ -312,3 +306,140 @@ function sidebar(){
 		});
 	});
 }
+
+function download(){
+	var baseurl = document.location.href;
+	var h = baseurl.split("/")
+	var h_1 = h[h.length-2]
+	var home = baseurl.replace(h_1 + "/","")
+	var dataset_location = home + "user-contributions/data/user_contributions.json";
+
+	// download json
+	$.getJSON(dataset_location, function(d) {
+		var dataset = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(d));
+		$('<a href="data:' + dataset + '" download="' + "user_contributions.json" + '">Download dataset</a>').appendTo('#download_dataset');
+	})
+
+	//svg = "<svg><text x='50' y='50'>Hello World!</text></svg>";
+
+	// download jpeg
+	function download_jpeg(){
+		var dataviz = $("#category_network_container").html();
+		filename = "category_network.svg"
+		console.log(dataviz)
+
+
+		canvg(document.getElementById('test'), svg);
+	}
+	//setTimeout(download_jpeg, 200);
+
+	var exportPNG = function() {
+
+		/*
+		Based off  gustavohenke's svg2png.js
+		https://gist.github.com/gustavohenke/9073132
+		*/
+			
+		var svg = document.querySelector("svg");
+		var svgData = new XMLSerializer().serializeToString(svg);
+
+		var canvas = document.createElement("canvas");
+		var ctx = canvas.getContext("2d");
+
+		var svgSize = svg.getBoundingClientRect();
+		canvas.width = svgSize.width;
+		canvas.height = svgSize.height;		
+		
+		var dataUri = '';
+		try {
+			dataUri = 'data:image/svg+xml;base64,' + btoa(svgData);
+		} 
+		catch (ex) {
+			
+			// For browsers that don't have a btoa() method, send the text off to a webservice for encoding
+			/* Uncomment if needed
+			$.ajax({
+				url: "http://www.mysite.com/webservice/encodeString",
+				data: { svg: svgData },
+				type: "POST",
+				async: false,
+				success: function(encodedSVG) {
+					dataUri = 'data:image/svg+xml;base64,' + encodedSVG;
+				}
+			})
+			*/
+		}
+		
+		var img = document.createElement( "img" );
+
+		img.onload = function() {
+			ctx.drawImage( img, 0, 0 );
+
+			try {
+												
+				// Try to initiate a download of the image
+				var a = document.createElement("a");
+				a.download = "network.png";
+				a.href = canvas.toDataURL("image/png");
+				document.querySelector("body").appendChild(a);
+				a.click();
+				document.querySelector("body").removeChild(a);
+												
+			} catch (ex) {
+		
+				// If downloading not possible (as in IE due to canvas.toDataURL() security issue) 
+				// then display image for saving via right-click
+				
+				var imgPreview = document.createElement("div");
+				imgPreview.appendChild(img);
+				document.querySelector("body").appendChild(imgPreview);
+		
+			}
+		};
+		img.src = dataUri;
+		//console.log(dataUri);
+		//console.log(img)
+	}
+
+	$("#download_dataviz").click(function () {
+		// http://jsfiddle.net/chprpipr/U7PLZ/4/
+		// http://piperjosh.com/2014/05/exporting-svg-graphics-png-jpg/
+		exportPNG();
+	})
+}
+
+function switch_page() {
+var baseurl = document.location.href;
+	var h = baseurl.split("/")
+	var h_1 = h[h.length-2]
+	var home = baseurl.replace(h_1 + "/","")
+	//console.log(home)
+
+	$('#switch_page').change(function(){
+		var page = $(this).val();
+		var url = home + page;
+		console.log(url);
+
+		if (url != '') {
+			window.location = url;
+		}
+		return false;
+	});
+}
+
+function how_to_read(){
+	button = $("#how_to_read_button");
+	box = $(".how_to_read");
+	
+	$("#how_to_read_button").click(function(){
+		box.toggleClass("show");
+		// console.log("click")
+	});
+};
+
+$(document).ready(function(){
+	dataviz();
+	how_to_read();
+	sidebar();
+	download();
+})

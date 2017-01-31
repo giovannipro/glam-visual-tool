@@ -1,23 +1,19 @@
-<div style="height:5vh; border-bottom:1px solid gray; padding: 1em;">
-	< sorting options >
-</div>
-<ul class="list">
 {{#each users}}
-	<li>
-		<a href="https://commons.wikimedia.org/wiki/User:{{user}}" title="{{user}}" target="_blank">
-			{{user}}
-		</a>
+	<div class="list_item">
+		<div class="item">
+			<a href="https://commons.wikimedia.org/wiki/User:{{user}}" title="{{user}}" target="_blank">
+				{{user}}
+			</a>
+		</div>
 
-		<ul>
+		<div>
 		{{#each files}}
-
-			<li>
+			<p>
 				{{date}} - {{count}}
-			</li>
+			</p>
 		{{/each}}
-		</ul>
-
-	</li>
-	<div class="clear">
+		</div>
+		<div class="clear"></div>
+		</div>
+	</div>
 {{/each}}
-</ul>

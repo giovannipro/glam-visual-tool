@@ -8,7 +8,7 @@
 		<link rel="stylesheet" href="../assets/style/style.css"/>
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700" rel="stylesheet">
 	</head>
-	<body>
+	<body class="overflow_hidden">
 		<header id="topbar" class="top_bar">
 			<div>
 				<h1>
@@ -37,7 +37,11 @@
 					Chart
 				</div>
 				<div>
-					User contributions
+					<select id="switch_page">
+						<option value="user-contributions">User contributions</option>
+						<option value="category_network">Category network</option>
+						<option value="page-views">Page views</option>
+					</select>
 				</div>
 			</div>
 		</div>
@@ -55,26 +59,56 @@
 					The visualizations shows the number of media uploaded by user overtime.
 				</div>
 				<div id="user_contributions_container" class="svg_container"></div>
+				<footer>
+					<!--<div style="float:left;">
+						< score >
+					</div>-->
+					<div style="float:right;">
+						<span id="download_dataviz" style="cursor:pointer;">
+							Download dataviz
+						</span>
+						&bull;
+						<span id="download_dataset" style="cursor:pointer;"></span>
+					</div>
+				</footer>
 			</section>
 			<section id="left_sidebar">
-				<div id="sidebar"></div>
+				<div id="sidebar_box">
+					<div  id="sorting_options">
+						<span style="font-size:0.6em; cursor:pointer;" id="desc_order">
+							by total
+						</span>
+						/
+						<!--<span style="font-size:0.6em; cursor:pointer;" id="asc_order" class="underline">
+							asc. order
+						</span> / -->
+						<span style="font-size:0.6em; cursor:pointer;" id="by_name" class="underline">
+							by name
+						</span>
+					</div>
+					<div id="sidebar"></div>
+				</div>
 			</section>
 		</main>
-		<footer>
-			<!--<div style="float:left;">
-				< score >
-			</div>-->
-			<div style="float:right;">
-				<span id="download" style="cursor:pointer;">
-					Download dataviz
-				</span>
-			</div>
-		</footer>
+		<style>
+			#visualizations #dataviz{
+				overflow-y: auto; 
+				overflow-x: hidden;
+				height: 100%; 
+				/*height: 80vh;*/
+			}
+			#user_contributions_container{
+				overflow-x: hidden;
+			}
+			#sidebar .list_item:last-child {
+				margin-bottom: 0px;
+			}
+		</style>
 		<script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
 		<script type="text/javascript" src="../bower_components/d3/d3.min.js"></script>
 		<script type="text/javascript" src="../assets/scripts/handlebars-v4.0.5.js"></script>
 		<script type="text/javascript" src="../assets/scripts/FileSaver.js"></script>
-		<script type="text/javascript" src="../assets/scripts/main.js"></script>
+		<!--<script type="text/javascript" src="../assets/scripts/main.js"></script>-->
 		<script type="text/javascript" src="functions.js"></script>
 	</body>
 </html>
