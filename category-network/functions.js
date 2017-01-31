@@ -80,7 +80,7 @@ function dataviz(){
 		if (error) throw error;
 
 		var files = [];
-  		data.nodes.forEach(function(node) {
+		data.nodes.forEach(function(node) {
 			files.push(
 				node.files
 			);
@@ -118,23 +118,24 @@ function dataviz(){
 			.enter()
 			.append("line")
 			.attr("class","line")
+			.attr("stroke","#999")
 
 		var nodes = plot.append("g")
-	  		.attr("class", "nodes")
+			.attr("class", "nodes")
 			.selectAll(".nodes")
 			.data(data.nodes)
 			.enter()
 			.append("g")
 			.attr("class",function(d,i){
 				return d.id + " node" //.replace(/_/g," ")
-			})  	
-	  		.call(d3.drag()
-			  	.on("start", dragstarted)
-			  	.on("drag", dragged)
-			  	.on("end", dragended)
+			})	
+			.call(d3.drag()
+				.on("start", dragstarted)
+				.on("drag", dragged)
+				.on("end", dragended)
 			)
 
-	  	var node_circle = nodes.append("circle")
+		var node_circle = nodes.append("circle")
 			.attr("r", function(d,i){
 				if (d.files == 0 || d.files == undefined ){
 					return 10
@@ -155,12 +156,13 @@ function dataviz(){
 				return "circle " + d.files
 			})
 
-	  	var label = nodes.append("text")
-	  		.attr("class", "labels")
-	  		.text(function(d) { 
-	  			return d.id;
-	  		})
-	  		.attr("text-anchor", "middle") // left
+		var label = nodes.append("text")
+			.attr("class", "labels")
+			.text(function(d) { 
+				return d.id;
+			})
+			.attr("text-anchor", "middle") // left
+			.attr("font-family","Open Sans");
 
 		simulation
 			.nodes(data.nodes)
@@ -183,8 +185,8 @@ function dataviz(){
 				})
 
 			var q = d3.quadtree(nodes),
-	  			i = 0,
-	  			n = nodes.length;
+				i = 0,
+				n = nodes.length;
 		}
 
 		function dragstarted(d) {
@@ -194,14 +196,14 @@ function dataviz(){
 		}
 
 		function dragged(d) {
-		  	d.fx = d3.event.x;
-		  	d.fy = d3.event.y;
+			d.fx = d3.event.x;
+			d.fy = d3.event.y;
 		}
 
 		function dragended(d) {
-		  	if (!d3.event.active) simulation.alphaTarget(0);
-		  	d.fx = null;
-		  	d.fy = null;
+			if (!d3.event.active) simulation.alphaTarget(0);
+			d.fx = null;
+			d.fy = null;
 		}
 	})
 }
@@ -261,11 +263,11 @@ function get_sidebar_data() {
 	var target = "#sidebar";
 
 	Handlebars.registerHelper('replace', function(str, a, b) {
-  		if (str && typeof str === 'string') {
+		if (str && typeof str === 'string') {
 			if (!a || typeof a !== 'string') return str;
 			if (!b || typeof b !== 'string') b = '';
 			return str.split(a).join(b);
-  		}
+		}
 	});
 
 	$.getJSON( data_source , function(d) {
@@ -301,11 +303,11 @@ function sidebar(order) {
 	var target = "#sidebar";
 
 	Handlebars.registerHelper('replace', function(str, a, b) {
-  		if (str && typeof str === 'string') {
+		if (str && typeof str === 'string') {
 			if (!a || typeof a !== 'string') return str;
 			if (!b || typeof b !== 'string') b = '';
 			return str.split(a).join(b);
-  		}
+		}
 	});
 
 	function highlight(){
@@ -403,11 +405,11 @@ function switch_page() {
 		console.log(url);
 
 		if (url != '') {
-            window.location = url;
-        }
-        return false;
-    	
-  	});
+			window.location = url;
+		}
+		return false;
+		
+	});
 
 }
 
@@ -425,7 +427,7 @@ function download(){
 		$('<a href="data:' + dataset + '" download="' + "category_network.json" + '">Download dataset</a>').appendTo('#download_dataset');
 	})
 
-	svg = "<svg><text x='50' y='50'>Hello World!</text></svg>";
+	//svg = "<svg><text x='50' y='50'>Hello World!</text></svg>";
 
 	// download jpeg
 	function download_jpeg(){
@@ -438,75 +440,81 @@ function download(){
 	}
 	//setTimeout(download_jpeg, 200);
 
-var exportPNG = function() {
+	var exportPNG = function() {
 
-    /*
-    Based off  gustavohenke's svg2png.js
-    https://gist.github.com/gustavohenke/9073132
-    */
-        
-    var svg = document.querySelector( "svg" );
-    var svgData = new XMLSerializer().serializeToString( svg );
+		/*
+		Based off  gustavohenke's svg2png.js
+		https://gist.github.com/gustavohenke/9073132
+		*/
+			
+		var svg = document.querySelector("svg");
+		var svgData = new XMLSerializer().serializeToString(svg);
 
-    var canvas = document.createElement( "canvas" );
-    var ctx = canvas.getContext( "2d" );
+		var canvas = document.createElement("canvas");
+		var ctx = canvas.getContext("2d");
 
-    var dataUri = '';
-    try {
-        dataUri = 'data:image/svg+xml;base64,' + btoa(svgData);
-    } catch (ex) {
-        
-        // For browsers that don't have a btoa() method, send the text off to a webservice for encoding
-        /* Uncomment if needed
-        $.ajax({
-            url: "http://www.mysite.com/webservice/encodeString",
-            data: { svg: svgData },
-            type: "POST",
-            async: false,
-            success: function(encodedSVG) {
-                dataUri = 'data:image/svg+xml;base64,' + encodedSVG;
-            }
-        })
-        */
+		var svgSize = svg.getBoundingClientRect();
+		canvas.width = svgSize.width;
+		canvas.height = svgSize.height;		
+		
+		var dataUri = '';
+		try {
+			dataUri = 'data:image/svg+xml;base64,' + btoa(svgData);
+		} 
+		catch (ex) {
+			
+			// For browsers that don't have a btoa() method, send the text off to a webservice for encoding
+			/* Uncomment if needed
+			$.ajax({
+				url: "http://www.mysite.com/webservice/encodeString",
+				data: { svg: svgData },
+				type: "POST",
+				async: false,
+				success: function(encodedSVG) {
+					dataUri = 'data:image/svg+xml;base64,' + encodedSVG;
+				}
+			})
+			*/
+		}
+		
+		var img = document.createElement( "img" );
 
-    }
-    
-    var img = document.createElement( "img" );
+		img.onload = function() {
+			ctx.drawImage( img, 0, 0 );
 
-    img.onload = function() {
-        ctx.drawImage( img, 0, 0 );
+			try {
+												
+				// Try to initiate a download of the image
+				var a = document.createElement("a");
+				a.download = "network.png";
+				a.href = canvas.toDataURL("image/png");
+				document.querySelector("body").appendChild(a);
+				a.click();
+				document.querySelector("body").removeChild(a);
+												
+			} catch (ex) {
+		
+				// If downloading not possible (as in IE due to canvas.toDataURL() security issue) 
+				// then display image for saving via right-click
+				
+				var imgPreview = document.createElement("div");
+				imgPreview.appendChild(img);
+				document.querySelector("body").appendChild(imgPreview);
+		
+			}
+		};
+		img.src = dataUri;
+		//console.log(dataUri);
+		//console.log(img)
+	}
 
-        try {
-                                            
-            // Try to initiate a download of the image
-            var a = document.createElement("a");
-            a.download = "network.png";
-            a.href = canvas.toDataURL("image/png");
-            document.querySelector("body").appendChild(a);
-            a.click();
-            document.querySelector("body").removeChild(a);
-                                            
-        } catch (ex) {
-    
-            // If downloading not possible (as in IE due to canvas.toDataURL() security issue) 
-            // then display image for saving via right-click
-            
-            var imgPreview = document.createElement("div");
-            imgPreview.appendChild(img);
-            document.querySelector("body").appendChild(imgPreview);
-    
-        }
-    };
-    console.log(dataUri);
-    img.src = dataUri;
-    
+	$("#download_dataviz").click(function () {
+		// http://jsfiddle.net/chprpipr/U7PLZ/4/
+		// http://piperjosh.com/2014/05/exporting-svg-graphics-png-jpg/
+		exportPNG();
+	})
 }
 
-$("#download_dataviz").click(function () {
-	// http://jsfiddle.net/chprpipr/U7PLZ/4/
-	//http://piperjosh.com/2014/05/exporting-svg-graphics-png-jpg/
-	exportPNG()
-})
 
 
 		/*
@@ -549,8 +557,6 @@ $("#download_dataviz").click(function () {
 	//})
 
 	//var isSafari = (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1);
-}
-
 
 /*
 function download(){
