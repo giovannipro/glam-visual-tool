@@ -1,9 +1,3 @@
-$(document).ready(function(){
-	dataviz();
-	how_to_read();
-	sidebar();
-})
-
 // main variables
 // ----------------------------------------
 
@@ -215,6 +209,32 @@ function how_to_read(){
 	});	
 };
 
+function switch_page() {
+var baseurl = document.location.href;
+	var h = baseurl.split("/")
+	var h_1 = h[h.length-2]
+	var home = baseurl.replace(h_1 + "/","")
+	//console.log(home)
+
+	$('#switch_page').change(function(){
+		var page = $(this).val();
+		var url = home + page;
+		console.log(url);
+
+		if (url != '') {
+			window.location = url;
+		}
+		return false;
+	});
+}
+
 function sidebar(){
 	
 }
+
+$(document).ready(function(){
+	dataviz();
+	how_to_read();
+	sidebar();
+	switch_page();
+})

@@ -1,0 +1,528 @@
+{
+  "nodes": [
+    {
+      "id": "Historical_images_of_buildings_in_the_canton_of_Zürich",
+      "group": 1,
+      "files": 7565
+    },
+    {
+      "id": "Historical_images_of_churches_in_the_canton_of_Zürich",
+      "group": 2,
+      "files": 26
+    },
+    {
+      "id": "Historical_images_of_Schloss_Kyburg",
+      "group": 2,
+      "files": 11
+    },
+    {
+      "id": "Vorstellung_Loblichen_Standts_Zürich_So_genante_Ausere_Amtheusser",
+      "group": 2,
+      "files": 4
+    },
+    {
+      "id": "Vorstellung_Loblichen_Standts_Zürich_Schlösser_oder_so_genante_Ausere_Vogteyen",
+      "group": 2,
+      "files": 5
+    },
+    {
+      "id": "Eigentliche_Vorstellung_der_Adelichen_Schlösser_im_Zürich_Gebieth",
+      "group": 2,
+      "files": 13
+    },
+    {
+      "id": "Historical_images_of_Ritterhaus_Bubikon",
+      "group": 2,
+      "files": 9
+    },
+    {
+      "id": "Historical_images_of_buildings_in_Zürich",
+      "group": 2,
+      "files": 46
+    },
+    {
+      "id": "Historical_photographs_of_Schloss_Kyburg",
+      "group": 3,
+      "files": 6
+    },
+    {
+      "id": "Historical_images_of_Reformierte_Kirche_Rüti",
+      "group": 3,
+      "files": 4
+    },
+    {
+      "id": "Historical_images_of_Reformierte_Kirche_Wetzikon",
+      "group": 3,
+      "files": 1
+    },
+    {
+      "id": "Historical_images_of_Grossmünster",
+      "group": 3,
+      "files": 32
+    },
+    {
+      "id": "Historical_images_of_Wasserkirche,_Zürich",
+      "group": 3,
+      "files": 23
+    },
+    {
+      "id": "Historical_images_of_Fraumünster,_Zürich",
+      "group": 3,
+      "files": 20
+    },
+    {
+      "id": "Historical_images_of_St._Peter_Church_in_Zürich",
+      "group": 3,
+      "files": 6
+    },
+    {
+      "id": "Historical_images_of_Barfüsserkloster,_Zürich",
+      "group": 4,
+      "files": 38
+    },
+    {
+      "id": "Historical_images_of_Gedecktes_Brüggli,_Zürich",
+      "group": 4,
+      "files": 5
+    },
+    {
+      "id": "Demolished_buildings_in_Zürich",
+      "group": 3,
+      "files": 35
+    },
+    {
+      "id": "Historical_images_of_Kornhaus,_Zürich",
+      "group": 4,
+      "files": 15
+    },
+    {
+      "id": "Historical_images_of_Hirschengraben,_Zürich",
+      "group": 3,
+      "files": 10
+    },
+    {
+      "id": "Bauhaus_Zürich",
+      "group": 3,
+      "files": 8
+    },
+    {
+      "id": "Papierwerd",
+      "group": 3,
+      "files": 6
+    },
+    {
+      "id": "Historical_images_of_Predigerkloster_(Zürich)",
+      "group": 3,
+      "files": 13
+    },
+    {
+      "id": "Historical_images_of_Münsterbrücke_Zürich",
+      "group": 3,
+      "files": 14
+    },
+    {
+      "id": "Historical_images_of_Rathausbrücke_Zürich",
+      "group": 3,
+      "files": 16
+    },
+    {
+      "id": "Historical_images_of_Landesmuseum_Zürich",
+      "group": 3,
+      "files": 2
+    },
+    {
+      "id": "Historical_images_of_Rathaus_Zürich",
+      "group": 3,
+      "files": 11
+    },
+    {
+      "id": "Historical_images_of_Zürich_Main_Station",
+      "group": 3,
+      "files": 13
+    },
+    {
+      "id": "Historical_images_of_Quaibrücke_Zürich",
+      "group": 3,
+      "files": 3
+    },
+    {
+      "id": "Grendeltor",
+      "group": 4,
+      "files": 25
+    },
+    {
+      "id": "Augustinertor",
+      "group": 4,
+      "files": 6
+    },
+    {
+      "id": "Rennwegtor",
+      "group": 4,
+      "files": 31
+    },
+    {
+      "id": "Kronentor_(Zürich)",
+      "group": 4,
+      "files": 6
+    },
+    {
+      "id": "Historical_images_of_the_University_of_Zurich",
+      "group": 3,
+      "files": 3
+    },
+    {
+      "id": "Historical_photographs_of_Fraumünster,_Zürich",
+      "group": 4,
+      "files": 5
+    },
+    {
+      "id": "Historical_photographs_of_Barfüsserkloster,_Zürich",
+      "group": 5,
+      "files": 6
+    },
+    {
+      "id": "Historical_photographs_of_Kornhaus,_Zürich",
+      "group": 5,
+      "files": 10
+    },
+    {
+      "id": "Historical_photographs_of_Zürich_Main_Station",
+      "group": 4,
+      "files": 14
+    },
+    {
+      "id": "Historical_photographs_of_Rennwegtor",
+      "group": 5,
+      "files": 3
+    },
+    {
+      "id": "Historical_photographs_of_Gedecktes_Brüggli",
+      "group": 5,
+      "files": 6
+    },
+    {
+      "id": "Historical_photographs_of_Hirschengraben,_Zürich",
+      "group": 4,
+      "files": 3
+    },
+    {
+      "id": "Kloster_Oetenbach",
+      "group": 4,
+      "files": 23
+    },
+    {
+      "id": "Kloster_St._Martin_(Zürich)",
+      "group": 4,
+      "files": 9
+    },
+    {
+      "id": "Wellenberg",
+      "group": 4,
+      "files": 20
+    },
+    {
+      "id": "Kronenporte",
+      "group": 4,
+      "files": 8
+    },
+    {
+      "id": "Gymnasium_at_4_Kantonsschulstraße,_Zurich",
+      "group": 4,
+      "files": 9
+    },
+    {
+      "id": "Kloster_Selnau",
+      "group": 4,
+      "files": 5
+    },
+    {
+      "id": "Gymnasium_at_8_Kantonsschulstraße,_Zurich",
+      "group": 4,
+      "files": 10
+    },
+    {
+      "id": "Landesmuseum_Zürich_on_photochrome_prints",
+      "group": 4,
+      "files": 12
+    },
+    {
+      "id": "Historical_photographs_of_Bauhaus,_Zürich",
+      "group": 4,
+      "files": 8
+    },
+    {
+      "id": "Historical_black_and_white_photographs_of_Zürich_Main_Station",
+      "group": 5,
+      "files": 30
+    },
+    {
+      "id": "Historical_photographs_of_Kloster_Oetenbach",
+      "group": 5,
+      "files": 9
+    },
+    {
+      "id": "Waisenhaus_Zürich",
+      "group": 5,
+      "files": 34
+    },
+    {
+      "id": "Oetenbachgasse",
+      "group": 5,
+      "files": 9
+    },
+    {
+      "id": "Demolition_of_Gymnasium_at_4_Kantonsschulstraße,_Zurich",
+      "group": 5,
+      "files": 6
+    },
+    {
+      "id": "Demolition_of_Gymnasium_at_8_Kantonsschulstraße,_Zurich",
+      "group": 5,
+      "files": 0
+    },
+    {
+      "id": "Schweizer_Heimatwerk",
+      "group": 6,
+      "files": 28
+    },
+    {
+      "id": "Mülenen_(Richterswil)",
+      "group": 7,
+      "files": 20
+    }
+  ],
+  "edges": [
+    {
+      "target": "Historical_images_of_buildings_in_the_canton_of_Zürich",
+      "source": "null"
+    },
+    {
+      "target": "Historical_images_of_churches_in_the_canton_of_Zürich",
+      "source": "Historical_images_of_buildings_in_the_canton_of_Zürich"
+    },
+    {
+      "target": "Historical_images_of_Schloss_Kyburg",
+      "source": "Historical_images_of_buildings_in_the_canton_of_Zürich"
+    },
+    {
+      "target": "Vorstellung_Loblichen_Standts_Zürich_So_genante_Ausere_Amtheusser",
+      "source": "Historical_images_of_buildings_in_the_canton_of_Zürich"
+    },
+    {
+      "target": "Vorstellung_Loblichen_Standts_Zürich_Schlösser_oder_so_genante_Ausere_Vogteyen",
+      "source": "Historical_images_of_buildings_in_the_canton_of_Zürich"
+    },
+    {
+      "target": "Eigentliche_Vorstellung_der_Adelichen_Schlösser_im_Zürich_Gebieth",
+      "source": "Historical_images_of_buildings_in_the_canton_of_Zürich"
+    },
+    {
+      "target": "Historical_images_of_Ritterhaus_Bubikon",
+      "source": "Historical_images_of_buildings_in_the_canton_of_Zürich"
+    },
+    {
+      "target": "Historical_images_of_buildings_in_Zürich",
+      "source": "Historical_images_of_buildings_in_the_canton_of_Zürich"
+    },
+    {
+      "target": "Historical_photographs_of_Schloss_Kyburg",
+      "source": "Historical_images_of_Schloss_Kyburg"
+    },
+    {
+      "target": "Historical_images_of_Reformierte_Kirche_Rüti",
+      "source": "Historical_images_of_churches_in_the_canton_of_Zürich"
+    },
+    {
+      "target": "Historical_images_of_Reformierte_Kirche_Wetzikon",
+      "source": "Historical_images_of_churches_in_the_canton_of_Zürich"
+    },
+    {
+      "target": "Historical_images_of_Grossmünster",
+      "source": "Historical_images_of_buildings_in_Zürich"
+    },
+    {
+      "target": "Historical_images_of_Wasserkirche,_Zürich",
+      "source": "Historical_images_of_buildings_in_Zürich"
+    },
+    {
+      "target": "Historical_images_of_Fraumünster,_Zürich",
+      "source": "Historical_images_of_buildings_in_Zürich"
+    },
+    {
+      "target": "Historical_images_of_St._Peter_Church_in_Zürich",
+      "source": "Historical_images_of_buildings_in_Zürich"
+    },
+    {
+      "target": "Historical_images_of_Barfüsserkloster,_Zürich",
+      "source": "Demolished_buildings_in_Zürich"
+    },
+    {
+      "target": "Historical_images_of_Gedecktes_Brüggli,_Zürich",
+      "source": "Demolished_buildings_in_Zürich"
+    },
+    {
+      "target": "Demolished_buildings_in_Zürich",
+      "source": "Historical_images_of_buildings_in_Zürich"
+    },
+    {
+      "target": "Historical_images_of_Kornhaus,_Zürich",
+      "source": "Demolished_buildings_in_Zürich"
+    },
+    {
+      "target": "Historical_images_of_Hirschengraben,_Zürich",
+      "source": "Historical_images_of_buildings_in_Zürich"
+    },
+    {
+      "target": "Bauhaus_Zürich",
+      "source": "Historical_images_of_buildings_in_Zürich"
+    },
+    {
+      "target": "Papierwerd",
+      "source": "Historical_images_of_buildings_in_Zürich"
+    },
+    {
+      "target": "Historical_images_of_Predigerkloster_(Zürich)",
+      "source": "Historical_images_of_buildings_in_Zürich"
+    },
+    {
+      "target": "Historical_images_of_Münsterbrücke_Zürich",
+      "source": "Historical_images_of_buildings_in_Zürich"
+    },
+    {
+      "target": "Historical_images_of_Rathausbrücke_Zürich",
+      "source": "Historical_images_of_buildings_in_Zürich"
+    },
+    {
+      "target": "Historical_images_of_Landesmuseum_Zürich",
+      "source": "Historical_images_of_buildings_in_Zürich"
+    },
+    {
+      "target": "Historical_images_of_Rathaus_Zürich",
+      "source": "Historical_images_of_buildings_in_Zürich"
+    },
+    {
+      "target": "Historical_images_of_Zürich_Main_Station",
+      "source": "Historical_images_of_buildings_in_Zürich"
+    },
+    {
+      "target": "Historical_images_of_Quaibrücke_Zürich",
+      "source": "Historical_images_of_buildings_in_Zürich"
+    },
+    {
+      "target": "Grendeltor",
+      "source": "Demolished_buildings_in_Zürich"
+    },
+    {
+      "target": "Augustinertor",
+      "source": "Demolished_buildings_in_Zürich"
+    },
+    {
+      "target": "Rennwegtor",
+      "source": "Demolished_buildings_in_Zürich"
+    },
+    {
+      "target": "Kronentor_(Zürich)",
+      "source": "Demolished_buildings_in_Zürich"
+    },
+    {
+      "target": "Historical_images_of_the_University_of_Zurich",
+      "source": "Historical_images_of_buildings_in_Zürich"
+    },
+    {
+      "target": "Historical_photographs_of_Fraumünster,_Zürich",
+      "source": "Historical_images_of_Fraumünster,_Zürich"
+    },
+    {
+      "target": "Historical_photographs_of_Barfüsserkloster,_Zürich",
+      "source": "Historical_images_of_Barfüsserkloster,_Zürich"
+    },
+    {
+      "target": "Historical_photographs_of_Kornhaus,_Zürich",
+      "source": "Historical_images_of_Kornhaus,_Zürich"
+    },
+    {
+      "target": "Historical_photographs_of_Zürich_Main_Station",
+      "source": "Historical_images_of_Zürich_Main_Station"
+    },
+    {
+      "target": "Historical_photographs_of_Rennwegtor",
+      "source": "Rennwegtor"
+    },
+    {
+      "target": "Historical_photographs_of_Gedecktes_Brüggli",
+      "source": "Historical_images_of_Gedecktes_Brüggli,_Zürich"
+    },
+    {
+      "target": "Historical_photographs_of_Hirschengraben,_Zürich",
+      "source": "Historical_images_of_Hirschengraben,_Zürich"
+    },
+    {
+      "target": "Kloster_Oetenbach",
+      "source": "Demolished_buildings_in_Zürich"
+    },
+    {
+      "target": "Kloster_St._Martin_(Zürich)",
+      "source": "Demolished_buildings_in_Zürich"
+    },
+    {
+      "target": "Wellenberg",
+      "source": "Demolished_buildings_in_Zürich"
+    },
+    {
+      "target": "Kronenporte",
+      "source": "Demolished_buildings_in_Zürich"
+    },
+    {
+      "target": "Gymnasium_at_4_Kantonsschulstraße,_Zurich",
+      "source": "Demolished_buildings_in_Zürich"
+    },
+    {
+      "target": "Kloster_Selnau",
+      "source": "Demolished_buildings_in_Zürich"
+    },
+    {
+      "target": "Gymnasium_at_8_Kantonsschulstraße,_Zurich",
+      "source": "Demolished_buildings_in_Zürich"
+    },
+    {
+      "target": "Landesmuseum_Zürich_on_photochrome_prints",
+      "source": "Historical_images_of_Landesmuseum_Zürich"
+    },
+    {
+      "target": "Historical_photographs_of_Bauhaus,_Zürich",
+      "source": "Bauhaus_Zürich"
+    },
+    {
+      "target": "Historical_black_and_white_photographs_of_Zürich_Main_Station",
+      "source": "Historical_photographs_of_Zürich_Main_Station"
+    },
+    {
+      "target": "Historical_photographs_of_Kloster_Oetenbach",
+      "source": "Kloster_Oetenbach"
+    },
+    {
+      "target": "Waisenhaus_Zürich",
+      "source": "Kloster_Oetenbach"
+    },
+    {
+      "target": "Oetenbachgasse",
+      "source": "Kloster_Oetenbach"
+    },
+    {
+      "target": "Demolition_of_Gymnasium_at_4_Kantonsschulstraße,_Zurich",
+      "source": "Gymnasium_at_4_Kantonsschulstraße,_Zurich"
+    },
+    {
+      "target": "Demolition_of_Gymnasium_at_8_Kantonsschulstraße,_Zurich",
+      "source": "Gymnasium_at_8_Kantonsschulstraße,_Zurich"
+    },
+    {
+      "target": "Schweizer_Heimatwerk",
+      "source": "Oetenbachgasse"
+    },
+    {
+      "target": "Mülenen_(Richterswil)",
+      "source": "Schweizer_Heimatwerk"
+    }
+  ]
+}

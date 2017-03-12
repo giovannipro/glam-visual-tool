@@ -188,15 +188,13 @@ footer {
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
-  height: 100%;
-  overflow: hidden;
   margin-top: 6em; }
   #visualizations::after {
     clear: both;
     content: "";
     display: block; }
   #visualizations #dataviz {
-    height: 85vh;
+    height: 90vh;
     width: 80%;
     float: left; }
   #visualizations #left_sidebar {
@@ -295,7 +293,7 @@ h2 {
   height: 10%; }
 
 #sorting_options {
-  font-size: 0.8em;
+  font-size: 1em;
   padding: 0.5em;
   border-bottom: 1px solid gray;
   height: 3em; }

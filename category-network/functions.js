@@ -71,7 +71,7 @@ function get_data(){
 function dataviz(){
 
 	var container = "#category_network_container";
-	var data_source = "data/category_network.json"; 
+	var data_source = "data/category_network.json";  // category_network  zurich
 	
 	var width = $("#category_network_container").width(), //1000, //document.getElementById("#dataviz").width,
 		height = $("#category_network_container").height(); //height = 1000; 
